@@ -57,4 +57,29 @@ public class Measure {
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        if (id != null) {
+            sb.append("@id: " + id + "\n");
+        }
+        if (parameter != null) {
+            sb.append("parameter: " + parameter + "\n");
+        }
+        if (parameterName != null) {
+            sb.append("parameterName: " + parameterName + "\n");
+        }
+        if (period != null) {
+            sb.append("period: " + period + "\n");
+        }
+        if (qualifier != null) {
+            sb.append("qualifier: " + qualifier + "\n");
+        }
+        if (unitName != null) {
+            sb.append("unitName: " + unitName + "\n");
+        }
+
+        return sb.toString();
+    }
 }

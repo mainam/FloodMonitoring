@@ -1,6 +1,5 @@
 package eu.fiskur.floodmonitoringharness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,7 +18,6 @@ import eu.fiskur.floodmonitoringapi.FloodApiLogger;
 import eu.fiskur.floodmonitoringapi.FloodMonitoring;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecastObj;
-import eu.fiskur.floodmonitoringapi.model.Warnings;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;

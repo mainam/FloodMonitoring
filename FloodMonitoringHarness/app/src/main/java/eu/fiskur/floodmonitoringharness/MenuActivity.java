@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
                 intent = new Intent(MenuActivity.this, AlertsActivity.class);
                 break;
             case R.id.measurment_stations_button:
-                intent = new Intent(MenuActivity.this, AlertsActivity.class);
+                intent = new Intent(MenuActivity.this, StationsActivity.class);
                 break;
         }
 

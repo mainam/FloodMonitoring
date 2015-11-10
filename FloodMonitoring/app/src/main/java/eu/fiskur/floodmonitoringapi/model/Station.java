@@ -9,8 +9,9 @@ public class Station {
     String RLOIid;
     String catchmentName;
     String dateOpened;
+    Float datumOffset;
     Integer eee;
-    String label;
+    RemedialStringType label;//This field can be either a string or string[]
     List<Measure> measures;
     Integer nnn;
     String notation;
@@ -52,6 +53,14 @@ public class Station {
         this.dateOpened = dateOpened;
     }
 
+    public Float getDatumOffset(){
+        return datumOffset;
+    }
+
+    public void setDatumOffset(Float datumOffset){
+        this.datumOffset = datumOffset;
+    }
+
     public Integer getEee() {
         return eee;
     }
@@ -60,11 +69,11 @@ public class Station {
         this.eee = eee;
     }
 
-    public String getLabel() {
+    public RemedialStringType getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(RemedialStringType label) {
         this.label = label;
     }
 
@@ -130,5 +139,56 @@ public class Station {
 
     public void setWiskiID(String wiskiID) {
         this.wiskiID = wiskiID;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        if(id != null){
+            sb.append("@id: " + id + "\n");
+        }
+        if(RLOIid != null){
+            sb.append("RLOIid: " + RLOIid + "\n");
+        }
+        if(catchmentName != null){
+            sb.append("catchmentName: " + catchmentName + "\n");
+        }
+        if(dateOpened != null){
+            sb.append("dateOpened: " + dateOpened + "\n");
+        }
+        if(eee != null){
+            sb.append("eee: " + eee + "\n");
+        }
+        if(label != null){
+            sb.append("label: " + label.toString() + "\n");
+        }
+        if(measures != null){
+            //todo
+            for(Measure measure : measures){
+                sb.append(measure.toString() + "\n");
+            }
+        }
+        if(nnn != null){
+            sb.append("nnn: " + nnn + "\n");
+        }
+        if(notation != null){
+            sb.append("notation: " + notation + "\n");
+        }
+        if(riverName != null){
+            sb.append("riverName: " + riverName + "\n");
+        }
+        if(stageScale != null){
+            sb.append("stageScale: " + stageScale + "\n");
+        }
+        if(stationReference != null){
+            sb.append("stationReference: " + stationReference + "\n");
+        }
+        if(town != null){
+            sb.append("town: " + town + "\n");
+        }
+        if(wiskiID != null){
+            sb.append("wiskiID: " + wiskiID + "\n");
+        }
+        return sb.toString();
     }
 }

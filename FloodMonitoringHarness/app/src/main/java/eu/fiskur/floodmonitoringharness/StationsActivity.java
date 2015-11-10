@@ -4,10 +4,10 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,29 +27,32 @@ import eu.fiskur.floodmonitoringapi.FloodApiLogger;
 import eu.fiskur.floodmonitoringapi.FloodMonitoring;
 import eu.fiskur.floodmonitoringapi.FloodUtils;
 import eu.fiskur.floodmonitoringapi.model.Meta;
+import eu.fiskur.floodmonitoringapi.model.Station;
+import eu.fiskur.floodmonitoringapi.model.Stations;
 import eu.fiskur.floodmonitoringapi.model.WarningItem;
 import eu.fiskur.floodmonitoringapi.model.Warnings;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
-public class AlertsActivity extends AppCompatActivity {
+public class StationsActivity extends AppCompatActivity {
+
     final static private String[] LOCATION_PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     final static private int PERMISSIONS_CODE = 0;
+
 
     @Bind(R.id.scroll_layout) ScrollView scrollLayout;
     @Bind(R.id.api_layout) LinearLayout apiLayout;
 
-    @Bind(R.id.min_severity_edit) EditText minSeverityEdit;
-    @Bind(R.id.get_min_severity_button) Button minSeverityButton;
+    @Bind(R.id.get_all_stations_button) Button getAllButton;
 
     @Bind(R.id.county_spinner) Spinner countySpinner;
-    @Bind(R.id.get_county_button) Button countyButton;
+    @Bind(R.id.get_stations_county_button) Button countyButton;
 
-    @Bind(R.id.location_latitude_edit) EditText latitudeEdit;
-    @Bind(R.id.location_longitude_edit) EditText longitudeEdit;
-    @Bind(R.id.location_distance_edit) EditText distanceEdit;
-    @Bind(R.id.get_location_button) Button locationButton;
+    @Bind(R.id.stations_location_latitude_edit) EditText latitudeEdit;
+    @Bind(R.id.stations_location_longitude_edit) EditText longitudeEdit;
+    @Bind(R.id.stations_location_distance_edit) EditText distanceEdit;
+    @Bind(R.id.get_stations_location_button) Button locationButton;
 
     @Bind(R.id.log_layout) LinearLayout logLayout;
     @Bind(R.id.log_view) EditText logView;
@@ -59,19 +62,18 @@ public class AlertsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.activity_stations);
 
         ButterKnife.bind(this);
+
+        Timber.plant(new Timber.DebugTree());
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, FloodUtils.counties);
         countySpinner.setAdapter(adapter);
-
-        Timber.plant(new Timber.DebugTree());
-
-        FloodUtils.hideKeyboard(AlertsActivity.this, minSeverityEdit);
 
         if (ContextCompat.checkSelfPermission(this, LOCATION_PERMISSIONS[0]) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, LOCATION_PERMISSIONS[1]) == PackageManager.PERMISSION_GRANTED    ) {
@@ -82,6 +84,7 @@ public class AlertsActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, LOCATION_PERMISSIONS, PERMISSIONS_CODE);
         }
 
+        FloodUtils.hideKeyboard(StationsActivity.this, latitudeEdit);
     }
 
     @Override
@@ -128,24 +131,8 @@ public class AlertsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener() {
-            @Override
-            public void apiLog(final String message) {
-                Log.d("", message);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        logView.append(message);
-                        scrollLayout.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                scrollLayout.fullScroll(View.FOCUS_DOWN);
-                            }
-                        });
-                    }
-                });
-            }
-        });
+        //Too much json to display so don't log api response:
+        FloodApiLogger.getInstance().setApiLogListener(null);
     }
 
     @Override
@@ -160,12 +147,10 @@ public class AlertsActivity extends AppCompatActivity {
 
     @OnClick({ R.id.log_clear_button,
             R.id.log_close_button,
-            R.id.get_all_button,
-            R.id.get_min_severity_button,
-            R.id.get_county_button,
-            R.id.get_location_button})
+            R.id.get_all_stations_button,
+            R.id.get_stations_county_button,
+            R.id.get_stations_location_button})
     public void onClick(View view) {
-        FloodUtils.hideKeyboard(AlertsActivity.this, minSeverityEdit);
         switch(view.getId()) {
             case R.id.log_clear_button:
                 logView.setText("");
@@ -176,97 +161,12 @@ public class AlertsActivity extends AppCompatActivity {
                 apiLayout.setVisibility(View.VISIBLE);
                 logLayout.setVisibility(View.GONE);
                 break;
-            case R.id.get_all_button:
+            case R.id.get_all_stations_button:
                 apiLayout.setVisibility(View.GONE);
                 logLayout.setVisibility(View.VISIBLE);
-                FloodMonitoring.getInstance().getAllWarnings()
+                FloodMonitoring.getInstance().getAllStations()
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Warnings>() {
-                            @Override
-                            public void onCompleted() {
-                                Timber.d("Rx onCompleted");
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Timber.d("Rx onError: " + e.toString());
-                            }
-
-                            @Override
-                            public void onNext(Warnings warnings) {
-                                Timber.d("Rx onNext");
-
-                                outputWarnings(warnings);
-                            }
-                        });
-                break;
-            case R.id.get_min_severity_button:
-                apiLayout.setVisibility(View.GONE);
-                logLayout.setVisibility(View.VISIBLE);
-
-                int minSeverity = Integer.parseInt(minSeverityEdit.getText().toString());
-
-                FloodMonitoring.getInstance().getWanringsMinSeverity(minSeverity)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Warnings>() {
-                            @Override
-                            public void onCompleted() {
-                                Timber.d("Rx onCompleted");
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Timber.d("Rx onError: " + e.toString());
-                            }
-
-                            @Override
-                            public void onNext(Warnings warnings) {
-                                Timber.d("Rx onNext");
-
-                                outputWarnings(warnings);
-                            }
-                        });
-                break;
-            case R.id.get_county_button:
-                apiLayout.setVisibility(View.GONE);
-                logLayout.setVisibility(View.VISIBLE);
-
-                String county = countySpinner.getSelectedItem().toString();
-
-                log("Selected county: " + county);
-
-                FloodMonitoring.getInstance().getCountyWarnings(county)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Warnings>() {
-                            @Override
-                            public void onCompleted() {
-                                Timber.d("Rx onCompleted");
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Timber.d("Rx onError: " + e.toString());
-                            }
-
-                            @Override
-                            public void onNext(Warnings warnings) {
-                                Timber.d("Rx onNext");
-
-                                outputWarnings(warnings);
-                            }
-                        });
-                break;
-            case R.id.get_location_button:
-                apiLayout.setVisibility(View.GONE);
-                logLayout.setVisibility(View.VISIBLE);
-
-                String lat =  latitudeEdit.getText().toString();
-                String lon =  longitudeEdit.getText().toString();
-                String distance =  distanceEdit.getText().toString();
-
-                FloodMonitoring.getInstance().getAreaWarnings(Double.parseDouble(lat), Double.parseDouble(lon), Integer.parseInt(distance))
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Warnings>() {
+                        .subscribe(new Observer<Stations>() {
                             @Override
                             public void onCompleted() {
                                 Timber.d("Rx onCompleted");
@@ -279,25 +179,83 @@ public class AlertsActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onNext(Warnings warnings) {
+                            public void onNext(Stations stations) {
                                 Timber.d("Rx onNext");
-                                outputWarnings(warnings);
+                                outputStations(stations);
+                            }
+                        });
+                break;
+            case R.id.get_stations_county_button:
+                apiLayout.setVisibility(View.GONE);
+                logLayout.setVisibility(View.VISIBLE);
+
+                String county = countySpinner.getSelectedItem().toString();
+
+                FloodMonitoring.getInstance().getCountyStations(county)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<Stations>() {
+                            @Override
+                            public void onCompleted() {
+                                Timber.d("Rx onCompleted");
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.d("Rx onError: " + e.toString());
+                                log("onError: " + e.toString());
+                            }
+
+                            @Override
+                            public void onNext(Stations stations) {
+                                Timber.d("Rx onNext");
+                                outputStations(stations);
                             }
                         });
 
                 break;
+            case R.id.get_stations_location_button:
+                apiLayout.setVisibility(View.GONE);
+                logLayout.setVisibility(View.VISIBLE);
+
+                String lat =  latitudeEdit.getText().toString();
+                String lon =  longitudeEdit.getText().toString();
+                String distance =  distanceEdit.getText().toString();
+
+                FloodMonitoring.getInstance().getAreaStations(Double.parseDouble(lat), Double.parseDouble(lon), Integer.parseInt(distance))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<Stations>() {
+                            @Override
+                            public void onCompleted() {
+                                Timber.d("Rx onCompleted");
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.d("Rx onError: " + e.toString());
+                                log("onError: " + e.toString());
+                            }
+
+                            @Override
+                            public void onNext(Stations stations) {
+                                Timber.d("Rx onNext");
+                                outputStations(stations);
+                            }
+                        });
+
+
+                break;
+
         }
     }
 
-    private void outputWarnings(Warnings warnings){
-        log("\n" + Utils.DIV);
+    private void outputStations(Stations stations){
 
-        if (warnings == null) {
+        if (stations == null) {
             log("No Warnings object");
             return;
         }
 
-        Meta meta = warnings.getMeta();
+        Meta meta = stations.getMeta();
         if (meta != null) {
             log("Publisher: " + meta.getPublisher());
             log("Licence: " + meta.getLicence());
@@ -307,44 +265,27 @@ public class AlertsActivity extends AppCompatActivity {
             log(Utils.DIV);
         }
 
-        List<WarningItem> items = warnings.getItems();
+        List<Station> items = stations.getItems();
 
-        int oneTally = 0;
-        int twoTally = 0;
-        int threeTally = 0;
-        int fourTally = 0;
-        int fiveTally = 0;
+        log("Displaying first 20 entries only.");
 
-        for (WarningItem item : items) {
+        int count = (items.size() > 20) ? 20 : items.size();
+        for(int i = 0 ; i < count ; i++){
+            Station station = items.get(i);
+            log(station.toString());
             log(Utils.DIV);
-            log("Warning:\n" + item.toString());
-
-            switch(item.getSeverityLevel()){
-                case 1:
-                    oneTally++;
-                    break;
-                case 2:
-                    twoTally++;
-                    break;
-                case 3:
-                    threeTally++;
-                    break;
-                case 4:
-                    fourTally++;
-                    break;
-                case 5:
-                    fiveTally++;
-                    break;
-            }
         }
 
-        log("Current warnings total: " + items.size());
-        log("Severity level 1: " + oneTally);
-        log("Severity level 2: " + twoTally);
-        log("Severity level 3: " + threeTally);
-        log("Severity level 4: " + fourTally);
-        log("Severity level 5: " + fiveTally);
-
+        //Use county Avon - tests RemedialStringType for inconsistent field that may be string or string[]
+        /*
+        for(Station station : items){
+            if(station.getStationReference().equals("E40411")){
+                log(Utils.DIV);
+                log("Station with array as name: ");
+                log(station.toString());
+            }
+        }
+        */
     }
 
     private void log(String log){

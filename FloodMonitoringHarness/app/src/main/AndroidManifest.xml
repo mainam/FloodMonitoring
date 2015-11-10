@@ -24,6 +24,9 @@
 
         <activity android:name=".ThreeDayForecastActivity"
             android:label="@string/menu_three_day_forecast" />
+
+        <activity android:name=".StationsActivity"
+            android:label="@string/menu_measurement_stations" />
     </application>
 
 </manifest>

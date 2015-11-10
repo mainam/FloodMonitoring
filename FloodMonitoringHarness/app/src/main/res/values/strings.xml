@@ -26,4 +26,13 @@
     <string name="get_location_button">Get Warnings for Location</string>
 
     <string name="get_three_day_label">3 Day Forecast</string>
+
+    <string name="get_all_stations_label">All Stations</string>
+    <string name="get_all_station_path">/stations</string>
+    <string name="get_all_stations_button">Get Stations</string>
+    <string name="get_stations_county_label">Stations for specific county</string>
+    <string name="get_stations_county_path">/stations?county={county}</string>
+    <string name="get_stations_county_button">Get Stations for County</string>
+    <string name="get_stations_location_label">Stations based on location</string>
+    <string name="get_stations_location_path">/stations?lat={latitude}&amp;long={longitude}&amp;dist={distance}</string>
 </resources>
