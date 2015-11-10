@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Flood Monitoring</string>
+
+    <string name="menu_warnings_and_alerts">Warnings and alerts</string>
+    <string name="menu_measurement_stations">Measurement stations</string>
+    <string name="menu_three_day_forecast">3 day forecast</string>
+
+    <string name="get_all_label">All flood warnings and alerts</string>
+    <string name="get_all_path">/floods</string>
+    <string name="get_all_button">Get Warnings</string>
+
+    <string name="get_min_severity_label">Flood warnings and alerts above severity (lower values are more severe)</string>
+    <string name="get_min_severity_path">/floods?min-severity={minSeverity}</string>
+    <string name="severity_hint">Severity Level</string>
+    <string name="get_min_severity_button">Get Warnings</string>
+
+    <string name="get_county_label">Flood warnings and alerts for specific county</string>
+    <string name="get_county_path">/floods?county={county}</string>
+    <string name="get_county_button">Get Warnings for County</string>
+
+    <string name="get_location_label">Flood warnings and alerts based on location</string>
+    <string name="get_location_path">/floods?lat={latitude}&amp;long={longitude}&amp;dist={distance}</string>
+    <string name="latitude_hint">Latitude</string>
+    <string name="longitude_hint">Longitude</string>
+    <string name="distance_hint">Distance</string>
+    <string name="get_location_button">Get Warnings for Location</string>
+
+    <string name="get_three_day_label">3 Day Forecast</string>
+</resources>
