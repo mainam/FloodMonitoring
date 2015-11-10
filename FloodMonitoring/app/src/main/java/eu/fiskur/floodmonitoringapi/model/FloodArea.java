@@ -2,73 +2,34 @@ package eu.fiskur.floodmonitoringapi.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class FloodArea {
-    @SerializedName("@id") String id;
-    String county;
-    String notation;
-    String polygon;
-    String riverOrSea;
+    @SerializedName("@context") String context;
+    Meta meta;
+    List<FloodAreaExpanded> items;
 
-    public String getId() {
-        return id;
+    public String getContext() {
+        return context;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setContext(String context) {
+        this.context = context;
     }
 
-    public String getCounty() {
-        return county;
+    public Meta getMeta() {
+        return meta;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
 
-    public String getNotation() {
-        return notation;
+    public List<FloodAreaExpanded> getItems() {
+        return items;
     }
 
-    public void setNotation(String notation) {
-        this.notation = notation;
-    }
-
-    public String getPolygon() {
-        return polygon;
-    }
-
-    public void setPolygon(String polygon) {
-        this.polygon = polygon;
-    }
-
-    public String getRiverOrSea() {
-        return riverOrSea;
-    }
-
-    public void setRiverOrSea(String riverOrSea) {
-        this.riverOrSea = riverOrSea;
-    }
-
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-
-        if(id != null){
-            sb.append("@id: " + id + "\n");
-        }
-        if(county != null){
-            sb.append("county: " + county + "\n");
-        }
-        if(notation != null){
-            sb.append("notation: " + notation + "\n");
-        }
-        if(polygon != null){
-            sb.append("polygon: " + polygon + "\n");
-        }
-        if(riverOrSea != null){
-            sb.append("riverOrSea: " + riverOrSea + "\n");
-        }
-
-        return sb.toString();
+    public void setItems(List<FloodAreaExpanded> items) {
+        this.items = items;
     }
 }

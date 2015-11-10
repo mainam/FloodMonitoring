@@ -1,9 +1,11 @@
 package eu.fiskur.floodmonitoringapi;
 
+import eu.fiskur.floodmonitoringapi.model.FloodArea;
 import eu.fiskur.floodmonitoringapi.model.Stations;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Warnings;
 import retrofit.http.GET;
+import retrofit.http.Path;
 import retrofit.http.Query;
 import rx.Observable;
 
@@ -18,6 +20,11 @@ public interface FloodMonitoringRest {
             @Query("lat") Double lat,
             @Query("long") Double lon,
             @Query("dist") Integer dist
+    );
+
+    @GET("/id/floodAreas/{floodAreaID}")
+    Observable<FloodArea> getFloodArea(
+            @Path("floodAreaID") String floodAreaId
     );
 
     //Measurement stations

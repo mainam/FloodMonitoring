@@ -7,7 +7,7 @@ public class WarningItem {
     String description;
     String eaAreaName;
     String eaRegionName;
-    FloodArea floodArea;
+    FloodAreaOverview floodArea;
     String floodAreaID;
     Boolean isTidal;
     String lcounty;
@@ -49,11 +49,11 @@ public class WarningItem {
         this.eaRegionName = eaRegionName;
     }
 
-    public FloodArea getFloodArea() {
+    public FloodAreaOverview getFloodArea() {
         return floodArea;
     }
 
-    public void setFloodArea(FloodArea floodArea) {
+    public void setFloodArea(FloodAreaOverview floodArea) {
         this.floodArea = floodArea;
     }
 
