@@ -29,9 +29,8 @@ public interface FloodMonitoringRest {
             @Query("dist") Integer dist
     );
 
-    //3 dat forecast
+    //3 day forecast
     @GET("/id/3dayforecast")
     Observable<ThreeDayForecast> get3DayForecast();
-
 
 }
