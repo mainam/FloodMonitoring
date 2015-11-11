@@ -77,9 +77,14 @@ public class FloodMonitoring {
     public Observable<ThreeDayForecast> getThreeDayForecast(){
         return rest.get3DayForecast();
     }
-
+    
     public Observable<ResponseBody> getDayImageBytes(int day){
         return rest.getDayImageBytes(day);
+    }
+
+    //For when using Picasso:
+    public String getDayImageUrl(int day){
+        return BASE_URL + "id/3dayforecast/image/" + day;
     }
 
     public Observable<Warnings> getAllWarnings(){

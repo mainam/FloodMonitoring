@@ -60,6 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/get_forecast_image_label"
+                        android:paddingBottom="10dp"
                         android:textSize="@dimen/header" />
 
                     <LinearLayout
@@ -67,7 +68,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingTop="10dp"
                         android:visibility="gone"
                         android:background="#fff">
                         <ImageView
