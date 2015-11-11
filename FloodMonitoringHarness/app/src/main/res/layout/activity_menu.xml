@@ -33,5 +33,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/menu_measurement_stations" />
+
+        <Button
+            android:id="@+id/measurment_stations_demo_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_measurement_stations_demo" />
+
     </LinearLayout>
 </ScrollView>

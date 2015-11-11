@@ -16,6 +16,7 @@ public class MenuActivity extends AppCompatActivity {
     @Bind(R.id.warnings_and_alerts_button) Button warningsAndAlertsButton;
     @Bind(R.id.warnings_and_alerts_demo_button) Button warningsAndAlertsDemoButton;
     @Bind(R.id.measurment_stations_button) Button measurementsStationsButton;
+    @Bind(R.id.measurment_stations_demo_button) Button measurementStationsDemoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,8 @@ public class MenuActivity extends AppCompatActivity {
     @OnClick({R.id.three_day_forecast_button,
             R.id.warnings_and_alerts_button,
             R.id.warnings_and_alerts_demo_button,
-            R.id.measurment_stations_button })
+            R.id.measurment_stations_button,
+            R.id.measurment_stations_demo_button})
     public void onClick(View view) {
         Intent intent = null;
         switch(view.getId()){
@@ -44,6 +46,9 @@ public class MenuActivity extends AppCompatActivity {
                 break;
             case R.id.measurment_stations_button:
                 intent = new Intent(MenuActivity.this, StationsActivity.class);
+                break;
+            case R.id.measurment_stations_demo_button:
+                intent = new Intent(MenuActivity.this, StationsDemoActivity.class);
                 break;
         }
 

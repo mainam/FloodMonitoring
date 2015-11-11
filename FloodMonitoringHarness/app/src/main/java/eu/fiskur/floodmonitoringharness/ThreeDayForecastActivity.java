@@ -139,7 +139,6 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
         if(forecast != null) {
             log("ThreeDayForecast: " + forecast.toString());
         }
-
     }
 
     private void log(String log) {

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
 import eu.fiskur.floodmonitoringapi.model.Polygon;
+import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
 import eu.fiskur.floodmonitoringapi.model.Stations;
@@ -61,8 +62,7 @@ public class FloodMonitoring {
             client.interceptors().add(interceptor);
 
             builder.client(client);
-
-            }
+        }
 
         //There's a bug in the data.gov API where a field named 'label' in Stations sometimes returns a string, sometimes a string[]:
         Gson gson = new GsonBuilder()
@@ -115,6 +115,11 @@ public class FloodMonitoring {
 
     public Observable<Stations> getAreaStations(double latutide, double longitude, int distance){
         return rest.getStations(null, latutide, longitude, distance);
+    }
+
+    public Observable<Readings> getReadings(String url, int count){
+        url+="/readings";
+        return rest.getReadings(url, 1, count);
     }
 
     public Observable<Polygon> getGeoJSON(String url){

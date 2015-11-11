@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.github.filosganga.geogson.model.Geometry;
-
 import java.util.List;
 
 import butterknife.Bind;

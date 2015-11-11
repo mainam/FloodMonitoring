@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Flood Monitoring</string>
 
-    <string name="menu_warnings_and_alerts">Warnings and alerts API</string>
-    <string name="menu_warnings_and_alerts_demo">Warnings and alerts Demo</string>
-    <string name="menu_measurement_stations">Measurement stations API</string>
-    <string name="menu_three_day_forecast">3 day forecast API</string>
+    <string name="menu_warnings_and_alerts">Warnings and Alerts API</string>
+    <string name="menu_warnings_and_alerts_demo">Warnings and Alerts Demo</string>
+    <string name="menu_measurement_stations">Measurement Stations API</string>
+    <string name="menu_three_day_forecast">3 Day Forecast API</string>
+    <string name="menu_measurement_stations_demo">Measurement Stations Demo</string>
 
     <string name="get_all_label">All flood warnings and alerts</string>
     <string name="get_all_path">/floods</string>
@@ -36,4 +37,5 @@
     <string name="get_stations_county_button">Get Stations for County</string>
     <string name="get_stations_location_label">Stations based on location</string>
     <string name="get_stations_location_path">/stations?lat={latitude}&amp;long={longitude}&amp;dist={distance}</string>
+    <string name="get_stations_location_button">Get Stations for Location</string>
 </resources>

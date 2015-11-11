@@ -30,6 +30,9 @@
 
         <activity android:name=".StationsActivity"
             android:label="@string/menu_measurement_stations" />
+
+        <activity android:name=".StationsDemoActivity"
+            android:label="@string/menu_measurement_stations_demo" />
     </application>
 
 </manifest>

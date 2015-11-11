@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -113,20 +112,6 @@ public class AlertsActivity extends AppCompatActivity {
             }
         }catch(SecurityException se){
 
-        }
-    }
-
-    private boolean hasLocationPermission(){
-        int res = checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
-        boolean fineLocGranted = (res == PackageManager.PERMISSION_GRANTED);
-
-        res = checkCallingOrSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
-        boolean coarseLocGranted = (res == PackageManager.PERMISSION_GRANTED);
-
-        if(fineLocGranted && coarseLocGranted){
-            return true;
-        }else{
-            return false;
         }
     }
 
