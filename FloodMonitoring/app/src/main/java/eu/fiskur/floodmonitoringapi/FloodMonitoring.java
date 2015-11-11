@@ -4,6 +4,7 @@ import com.github.filosganga.geogson.gson.GeometryAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.ResponseBody;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
@@ -75,6 +76,10 @@ public class FloodMonitoring {
 
     public Observable<ThreeDayForecast> getThreeDayForecast(){
         return rest.get3DayForecast();
+    }
+
+    public Observable<ResponseBody> getDayImageBytes(int day){
+        return rest.getDayImageBytes(day);
     }
 
     public Observable<Warnings> getAllWarnings(){

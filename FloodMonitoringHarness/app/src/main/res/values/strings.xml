@@ -28,6 +28,8 @@
     <string name="get_location_button">Get Warnings for Location</string>
 
     <string name="get_three_day_label">3 Day Forecast</string>
+    <string name="get_forecast_image_label">Forecast Image</string>
+    <string name="get_forecast_image_button">Get Images</string>
 
     <string name="get_all_stations_label">All Stations</string>
     <string name="get_all_station_path">/stations</string>

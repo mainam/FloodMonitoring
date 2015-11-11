@@ -1,5 +1,7 @@
 package eu.fiskur.floodmonitoringharness;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +10,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import com.squareup.okhttp.ResponseBody;
+
+import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import eu.fiskur.floodmonitoringapi.FloodApiLogger;
 import eu.fiskur.floodmonitoringapi.FloodMonitoring;
+import eu.fiskur.floodmonitoringapi.FloodUtils;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecastObj;
+import retrofit.Response;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -29,6 +38,12 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
     @Bind(R.id.api_layout) LinearLayout apiLayout;
 
     @Bind(R.id.get_3_day_forecast_button) Button threeDayForecastButton;
+
+    @Bind(R.id.forecast_image1_view) ImageView forecastImage1;
+    @Bind(R.id.forecast_image2_view) ImageView forecastImage2;
+    @Bind(R.id.forecast_image3_view) ImageView forecastImage3;
+    @Bind(R.id.images_layout) LinearLayout imagesLayout;
+    @Bind(R.id.get_forecast_image_button) Button imageButton;
 
 
     @Bind(R.id.log_layout) LinearLayout logLayout;
@@ -66,6 +81,7 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
                         scrollLayout.post(new Runnable() {
                             @Override
                             public void run() {
+                                Log.d(">>>", ">>>" + message);
                                 scrollLayout.fullScroll(View.FOCUS_DOWN);
                             }
                         });
@@ -83,7 +99,8 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
 
     @OnClick({R.id.log_clear_button,
             R.id.log_close_button,
-            R.id.get_3_day_forecast_button})
+            R.id.get_3_day_forecast_button,
+            R.id.get_forecast_image_button})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -121,6 +138,74 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
                             }
                         });
                 break;
+            case R.id.get_forecast_image_button:
+                FloodMonitoring.getInstance().getDayImageBytes(1)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe(new Observer<ResponseBody>() {
+                            @Override
+                            public void onCompleted() {
+                                Timber.d("Rx onCompleted");
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.d("Rx onError: " + e.toString());
+                                log(e.toString());
+                            }
+
+                            @Override
+                            public void onNext(ResponseBody responseBody) {
+                                FloodUtils.loadImage(responseBody, forecastImage1);
+                                imagesLayout.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+
+                FloodMonitoring.getInstance().getDayImageBytes(2)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe(new Observer<ResponseBody>() {
+                            @Override
+                            public void onCompleted() {
+                                Timber.d("Rx onCompleted");
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.d("Rx onError: " + e.toString());
+                                log(e.toString());
+                            }
+
+                            @Override
+                            public void onNext(ResponseBody responseBody) {
+                                FloodUtils.loadImage(responseBody, forecastImage2);
+                                imagesLayout.setVisibility(View.VISIBLE);
+                            }
+                        });
+
+                FloodMonitoring.getInstance().getDayImageBytes(3)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe(new Observer<ResponseBody>() {
+                            @Override
+                            public void onCompleted() {
+                                Timber.d("Rx onCompleted");
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Timber.d("Rx onError: " + e.toString());
+                                log(e.toString());
+                            }
+
+                            @Override
+                            public void onNext(ResponseBody responseBody) {
+                                FloodUtils.loadImage(responseBody, forecastImage3);
+                                imagesLayout.setVisibility(View.VISIBLE);
+                            }
+                        });
+                break;
         }
     }
 
@@ -142,7 +227,7 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
     }
 
     private void log(String log) {
-        Timber.d(log);
-        logView.append(log + "\n");
+        Timber.d(log + "\n");
+        logView.append("\n" + log + "\n");
     }
 }

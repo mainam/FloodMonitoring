@@ -2,8 +2,17 @@ package eu.fiskur.floodmonitoringapi;
 
 import android.app.Service;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.squareup.okhttp.ResponseBody;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class FloodUtils {
     public static String[] counties = new String[]{
@@ -82,5 +91,21 @@ public class FloodUtils {
     public static void hideKeyboard(Context context, EditText view){
         InputMethodManager imm = (InputMethodManager)context.getSystemService(Service.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void loadImage(ResponseBody responseBody, ImageView imageView){
+        byte[] imageBytes = null;
+        try {
+            imageBytes = responseBody.bytes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (imageBytes != null) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            imageView.setImageBitmap(bmp);
+        }else{
+            //
+        }
     }
 }

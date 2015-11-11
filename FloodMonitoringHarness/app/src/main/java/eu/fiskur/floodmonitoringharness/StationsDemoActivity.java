@@ -182,12 +182,11 @@ public class StationsDemoActivity extends AppCompatActivity {
         line.setHasLines(true);
         line.setHasPoints(false);
         line.setHasLabels(true);
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         lines.add(line);
 
         LineChartData data = new LineChartData();
         data.setLines(lines);
-
 
         chart.setLineChartData(data);
 

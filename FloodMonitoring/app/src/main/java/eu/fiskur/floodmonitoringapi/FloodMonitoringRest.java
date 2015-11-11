@@ -1,5 +1,7 @@
 package eu.fiskur.floodmonitoringapi;
 
+import com.squareup.okhttp.ResponseBody;
+
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
 import eu.fiskur.floodmonitoringapi.model.Polygon;
 import eu.fiskur.floodmonitoringapi.model.Readings;
@@ -49,6 +51,11 @@ public interface FloodMonitoringRest {
     //3 day forecast
     @GET("id/3dayforecast")
     Observable<ThreeDayForecast> get3DayForecast();
+
+    //Base64 encoded images - day: 1, 2, or 3
+    @GET("id/3dayforecast/image/{day}")
+    Observable<ResponseBody> getDayImageBytes(
+            @Path("day") int day);
 
 
     @GET
