@@ -1,6 +1,8 @@
 # FloodMonitoring
 
-Android library for the gov.uk Flood Monitoring API. The FloodMonitoringHarness example application illustrates how to use the library using RxJava.
+Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
+
+The FloodMonitoringHarness example application illustrates how to use the library with RxJava.
 
 Example:
 
