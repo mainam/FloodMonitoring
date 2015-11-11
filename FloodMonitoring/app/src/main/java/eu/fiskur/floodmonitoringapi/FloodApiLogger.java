@@ -9,7 +9,6 @@ public class FloodApiLogger {
         if(instance == null){
             instance = new FloodApiLogger();
         }
-        instance = new FloodApiLogger();
         return instance;
     }
 
@@ -18,7 +17,7 @@ public class FloodApiLogger {
     }
 
     public void setApiLogListener(ApiLogListener logListener){
-        this.logListener = logListener;
+        FloodApiLogger.logListener = logListener;
     }
 
     public void log(String message){
@@ -28,7 +27,7 @@ public class FloodApiLogger {
     }
 
     public interface ApiLogListener{
-        public void apiLog(String message);
+        void apiLog(String message);
     }
 }
 

@@ -6,8 +6,6 @@ import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import java.io.IOException;
-
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
 import eu.fiskur.floodmonitoringapi.model.Polygon;
 import eu.fiskur.floodmonitoringapi.model.Readings;
@@ -21,7 +19,6 @@ import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import rx.Observable;
 
-//TODO - move to Retrofit 2: http://inthecheesefactory.com/blog/retrofit-2.0/en
 public class FloodMonitoring {
     private static final String BASE_URL = "http://environment.data.gov.uk/flood-monitoring/";
     private static FloodMonitoring instance = null;
@@ -47,7 +44,6 @@ public class FloodMonitoring {
     private void buildRest(boolean logOutput){
         Retrofit.Builder builder = new Retrofit.Builder();
 
-        //http://stackoverflow.com/a/33256827
         if (logOutput) {
             OkHttpClient client = new OkHttpClient();
 
