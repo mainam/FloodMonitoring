@@ -14,6 +14,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Bind(R.id.three_day_forecast_button) Button threeDayForecastButton;
     @Bind(R.id.warnings_and_alerts_button) Button warningsAndAlertsButton;
+    @Bind(R.id.warnings_and_alerts_demo_button) Button warningsAndAlertsDemoButton;
     @Bind(R.id.measurment_stations_button) Button measurementsStationsButton;
 
     @Override
@@ -27,6 +28,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick({R.id.three_day_forecast_button,
             R.id.warnings_and_alerts_button,
+            R.id.warnings_and_alerts_demo_button,
             R.id.measurment_stations_button })
     public void onClick(View view) {
         Intent intent = null;
@@ -36,6 +38,9 @@ public class MenuActivity extends AppCompatActivity {
                 break;
             case R.id.warnings_and_alerts_button:
                 intent = new Intent(MenuActivity.this, AlertsActivity.class);
+                break;
+            case R.id.warnings_and_alerts_demo_button:
+                intent = new Intent(MenuActivity.this, AlertsDemoActivity.class);
                 break;
             case R.id.measurment_stations_button:
                 intent = new Intent(MenuActivity.this, StationsActivity.class);

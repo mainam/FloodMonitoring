@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Flood Monitoring</string>
 
-    <string name="menu_warnings_and_alerts">Warnings and alerts</string>
-    <string name="menu_measurement_stations">Measurement stations</string>
-    <string name="menu_three_day_forecast">3 day forecast</string>
+    <string name="menu_warnings_and_alerts">Warnings and alerts API</string>
+    <string name="menu_warnings_and_alerts_demo">Warnings and alerts Demo</string>
+    <string name="menu_measurement_stations">Measurement stations API</string>
+    <string name="menu_three_day_forecast">3 day forecast API</string>
 
     <string name="get_all_label">All flood warnings and alerts</string>
     <string name="get_all_path">/floods</string>

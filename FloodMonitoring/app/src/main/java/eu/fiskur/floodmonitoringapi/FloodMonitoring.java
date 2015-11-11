@@ -1,19 +1,15 @@
 package eu.fiskur.floodmonitoringapi;
 
 import com.github.filosganga.geogson.gson.GeometryAdapterFactory;
-import com.github.filosganga.geogson.model.Geometry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
 
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
+import eu.fiskur.floodmonitoringapi.model.Polygon;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
 import eu.fiskur.floodmonitoringapi.model.Stations;
@@ -121,8 +117,8 @@ public class FloodMonitoring {
         return rest.getStations(null, latutide, longitude, distance);
     }
 
-    public Observable<Geometry> getGeoJSON(String url){
-        return null;//todo hateaos in retrofit?
+    public Observable<Polygon> getGeoJSON(String url){
+        return rest.getPolygon(url);
     }
 
 }

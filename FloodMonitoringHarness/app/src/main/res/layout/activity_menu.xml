@@ -23,6 +23,12 @@
             android:text="@string/menu_warnings_and_alerts" />
 
         <Button
+            android:id="@+id/warnings_and_alerts_demo_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_warnings_and_alerts_demo" />
+
+        <Button
             android:id="@+id/measurment_stations_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

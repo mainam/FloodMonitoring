@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/warning_severity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Flood Alert"
+    />
+
+    <TextView
+        android:id="@+id/warning_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Upper River Tees"
+    />
+
+    <TextView
+        android:id="@+id/warning_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="River Tees, Durham, Darlington, North Yorkshire"
+        />
+
+</LinearLayout>

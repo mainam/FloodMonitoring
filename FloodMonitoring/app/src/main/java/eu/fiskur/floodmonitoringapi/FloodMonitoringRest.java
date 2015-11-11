@@ -1,12 +1,14 @@
 package eu.fiskur.floodmonitoringapi;
 
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
+import eu.fiskur.floodmonitoringapi.model.Polygon;
 import eu.fiskur.floodmonitoringapi.model.Stations;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Warnings;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
+import retrofit.http.Url;
 import rx.Observable;
 
 //http://environment.data.gov.uk/flood-monitoring/doc/reference
@@ -39,5 +41,9 @@ public interface FloodMonitoringRest {
     //3 day forecast
     @GET("id/3dayforecast")
     Observable<ThreeDayForecast> get3DayForecast();
+
+
+    @GET
+    Observable<Polygon> getPolygon(@Url String url);
 
 }

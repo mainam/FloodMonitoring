@@ -22,6 +22,9 @@
         <activity android:name=".AlertsActivity"
             android:label="@string/menu_warnings_and_alerts"/>
 
+        <activity android:name=".AlertsDemoActivity"
+            android:label="@string/menu_warnings_and_alerts_demo" />
+
         <activity android:name=".ThreeDayForecastActivity"
             android:label="@string/menu_three_day_forecast" />
 
