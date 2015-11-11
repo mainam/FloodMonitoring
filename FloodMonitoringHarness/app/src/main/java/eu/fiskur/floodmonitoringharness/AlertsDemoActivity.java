@@ -1,6 +1,7 @@
 package eu.fiskur.floodmonitoringharness;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,8 +36,11 @@ public class AlertsDemoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_alerts_demo);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         ButterKnife.bind(this);
 
@@ -85,6 +89,8 @@ public class AlertsDemoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 WarningItem warning = warningsAdapter.getItem(position);
                 log("Clicked: " + warning.getDescription());
+
+                //Just checking GeoJSON works:
                 FloodMonitoring.getInstance().getGeoJSON(warning.getFloodArea().getPolygon())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
@@ -103,7 +109,6 @@ public class AlertsDemoActivity extends AppCompatActivity {
                             public void onNext(Polygon polygon) {
 
                                 log("Rx onNext: " + polygon.getType());
-                               
                             }
                         });
             }

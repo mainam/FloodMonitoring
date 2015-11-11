@@ -11,11 +11,32 @@ public class WarningItem {
     String floodAreaID;
     Boolean isTidal;
     String lcounty;
+    String message;
     String severity;
     Integer severityLevel;
     String timeMessageChanged;
     String timeRaised;
     String timeSeverityChanged;
+
+    public String getLcounty() {
+        return lcounty;
+    }
+
+    public void setLcounty(String lcounty) {
+        this.lcounty = lcounty;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setSeverityLevel(Integer severityLevel) {
+        this.severityLevel = severityLevel;
+    }
 
     public String getId() {
         return id;
@@ -91,10 +112,6 @@ public class WarningItem {
 
     public int getSeverityLevel() {
         return severityLevel;
-    }
-
-    public void setSeverityLevel(int severityLevel) {
-        this.severityLevel = severityLevel;
     }
 
     public String getTimeMessageChanged() {

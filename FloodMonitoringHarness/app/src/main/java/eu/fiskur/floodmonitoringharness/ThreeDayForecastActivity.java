@@ -1,6 +1,7 @@
 package eu.fiskur.floodmonitoringharness;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -9,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,8 +42,11 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_three_day_forecast);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         ButterKnife.bind(this);
     }

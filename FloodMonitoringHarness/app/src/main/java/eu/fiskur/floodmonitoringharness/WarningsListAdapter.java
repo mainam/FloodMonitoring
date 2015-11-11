@@ -48,6 +48,7 @@ public class WarningsListAdapter extends BaseAdapter {
             holder.warningSeverity = (TextView) row.findViewById(R.id.warning_severity);
             holder.warningDescription = (TextView) row.findViewById(R.id.warning_description);
             holder.warningLocation = (TextView) row.findViewById(R.id.warning_location);
+            holder.warningMessage = (TextView) row.findViewById(R.id.warning_message);
             row.setTag(holder);
         }else{
             holder = (WarningHolder)row.getTag();
@@ -58,6 +59,15 @@ public class WarningsListAdapter extends BaseAdapter {
         holder.warningDescription.setText(warning.getDescription());
         holder.warningLocation.setText(warning.getFloodArea().getRiverOrSea() + ", " + warning.getFloodArea().getCounty());
 
+        String message = warning.getMessage();
+
+        if(message == null || message.isEmpty()){
+            holder.warningMessage.setVisibility(View.GONE);
+        }else {
+            holder.warningMessage.setText(warning.getMessage());
+            holder.warningMessage.setVisibility(View.VISIBLE);
+        }
+
         return row;
     }
 
@@ -65,5 +75,6 @@ public class WarningsListAdapter extends BaseAdapter {
         TextView warningSeverity;
         TextView warningDescription;
         TextView warningLocation;
+        TextView warningMessage;
     }
 }
