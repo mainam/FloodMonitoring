@@ -7,6 +7,7 @@ Example:
 ```java
 FloodMonitoring.getInstance().getThreeDayForecast()
 	.observeOn(AndroidSchedulers.mainThread())
+	.subscribeOn(Schedulers.newThread())
 	.subscribe(new Observer<ThreeDayForecast>() {
 	    @Override
 	    public void onCompleted() {
