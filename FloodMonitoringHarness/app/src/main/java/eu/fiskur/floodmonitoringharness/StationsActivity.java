@@ -33,6 +33,7 @@ import eu.fiskur.floodmonitoringapi.model.WarningItem;
 import eu.fiskur.floodmonitoringapi.model.Warnings;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class StationsActivity extends AppCompatActivity {
@@ -166,6 +167,7 @@ public class StationsActivity extends AppCompatActivity {
                 logLayout.setVisibility(View.VISIBLE);
                 FloodMonitoring.getInstance().getAllStations()
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Stations>() {
                             @Override
                             public void onCompleted() {
@@ -193,6 +195,7 @@ public class StationsActivity extends AppCompatActivity {
 
                 FloodMonitoring.getInstance().getCountyStations(county)
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Stations>() {
                             @Override
                             public void onCompleted() {
@@ -223,6 +226,7 @@ public class StationsActivity extends AppCompatActivity {
 
                 FloodMonitoring.getInstance().getAreaStations(Double.parseDouble(lat), Double.parseDouble(lon), Integer.parseInt(distance))
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Stations>() {
                             @Override
                             public void onCompleted() {

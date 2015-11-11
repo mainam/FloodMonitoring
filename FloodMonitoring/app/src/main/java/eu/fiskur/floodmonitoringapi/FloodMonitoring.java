@@ -4,8 +4,14 @@ import com.github.filosganga.geogson.gson.GeometryAdapterFactory;
 import com.github.filosganga.geogson.model.Geometry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import java.io.IOException;
 
 import eu.fiskur.floodmonitoringapi.model.FloodArea;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
@@ -20,7 +26,7 @@ import rx.Observable;
 
 //TODO - move to Retrofit 2: http://inthecheesefactory.com/blog/retrofit-2.0/en
 public class FloodMonitoring {
-    private static final String BASE_URL = "http://environment.data.gov.uk/flood-monitoring";
+    private static final String BASE_URL = "http://environment.data.gov.uk/flood-monitoring/";
     private static FloodMonitoring instance = null;
     private FloodApiLogger floodApiLogger;
 

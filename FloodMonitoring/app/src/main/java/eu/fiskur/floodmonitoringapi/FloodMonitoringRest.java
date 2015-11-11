@@ -13,7 +13,7 @@ import rx.Observable;
 public interface FloodMonitoringRest {
 
     //Flood warnings and alerts
-    @GET("/id/floods")
+    @GET("id/floods")
     Observable<Warnings> getWarnings(
             @Query("min-severity") Integer minSeverity,
             @Query("county") String county,
@@ -22,13 +22,13 @@ public interface FloodMonitoringRest {
             @Query("dist") Integer dist
     );
 
-    @GET("/id/floodAreas/{floodAreaID}")
+    @GET("id/floodAreas/{floodAreaID}")
     Observable<FloodArea> getFloodArea(
             @Path("floodAreaID") String floodAreaId
     );
 
     //Measurement stations
-    @GET("/id/stations")
+    @GET("id/stations")
     Observable<Stations> getStations(
             @Query("county") String county,
             @Query("lat") Double lat,
@@ -37,7 +37,7 @@ public interface FloodMonitoringRest {
     );
 
     //3 day forecast
-    @GET("/id/3dayforecast")
+    @GET("id/3dayforecast")
     Observable<ThreeDayForecast> get3DayForecast();
 
 }

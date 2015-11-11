@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import eu.fiskur.floodmonitoringapi.model.WarningItem;
 import eu.fiskur.floodmonitoringapi.model.Warnings;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class AlertsActivity extends AppCompatActivity {
@@ -181,6 +183,7 @@ public class AlertsActivity extends AppCompatActivity {
                 logLayout.setVisibility(View.VISIBLE);
                 FloodMonitoring.getInstance().getAllWarnings()
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Warnings>() {
                             @Override
                             public void onCompleted() {
@@ -190,6 +193,7 @@ public class AlertsActivity extends AppCompatActivity {
                             @Override
                             public void onError(Throwable e) {
                                 Timber.d("Rx onError: " + e.toString());
+                                log(e.toString());
                             }
 
                             @Override
@@ -208,6 +212,7 @@ public class AlertsActivity extends AppCompatActivity {
 
                 FloodMonitoring.getInstance().getWanringsMinSeverity(minSeverity)
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Warnings>() {
                             @Override
                             public void onCompleted() {
@@ -237,6 +242,7 @@ public class AlertsActivity extends AppCompatActivity {
 
                 FloodMonitoring.getInstance().getCountyWarnings(county)
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Warnings>() {
                             @Override
                             public void onCompleted() {
@@ -266,6 +272,7 @@ public class AlertsActivity extends AppCompatActivity {
 
                 FloodMonitoring.getInstance().getAreaWarnings(Double.parseDouble(lat), Double.parseDouble(lon), Integer.parseInt(distance))
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<Warnings>() {
                             @Override
                             public void onCompleted() {

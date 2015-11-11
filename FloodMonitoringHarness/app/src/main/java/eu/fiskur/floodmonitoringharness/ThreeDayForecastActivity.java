@@ -20,6 +20,7 @@ import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecastObj;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class ThreeDayForecastActivity extends AppCompatActivity {
@@ -97,6 +98,7 @@ public class ThreeDayForecastActivity extends AppCompatActivity {
                 logLayout.setVisibility(View.VISIBLE);
                 FloodMonitoring.getInstance().getThreeDayForecast()
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(new Observer<ThreeDayForecast>() {
                             @Override
                             public void onCompleted() {
