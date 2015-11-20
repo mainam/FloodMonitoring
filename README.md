@@ -29,4 +29,10 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 #Water Level Stations
 
-First call getAreaStations() to get stations within vicinity, this returns an array of StationOverview objects which you can use to fetch nmore detail.
+`getAreaStations(double latitude, double longitude, int distance)` returns an array of StationOverview objects containing some detail, but you should use the `id` to fetch the full Station object:
+
+`getStation(String url)` returns the full mesurement station detail.
+
+
+
+
