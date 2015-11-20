@@ -33,6 +33,8 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 `getStation(String url)` returns the full mesurement station detail.
 
+`getReadings(String url, int count)` gets an array of `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs.
+
 
 
 
