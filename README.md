@@ -1,4 +1,4 @@
-# FloodMonitoring
+# FloodMonitoring - in development, do not use.
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
@@ -26,3 +26,7 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	    }
 	});
 ```
+
+#Water Level Stations
+
+First call getAreaStations() to get stations within vicinity, this returns an array of StationOverview objects which you can use to fetch nmore detail.
