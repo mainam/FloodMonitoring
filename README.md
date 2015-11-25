@@ -39,7 +39,7 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 `getStation(String url)` returns the full measurement station detail.
 
-`getReadings(String url, int count)` gets an array of `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs.
+`getReadings(String url, int count)` gets the last `count` `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs, you can also use `getReadingsToday(String url)` and `getReadingsDays(String url, int days)` which will ge the last x days worth of reading (although the API docs state reading are hed for a month it only seems to return up to two weeks worth of readings).
 
 
 
