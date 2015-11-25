@@ -2,9 +2,9 @@
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
-The FloodMonitoringHarness example application illustrates how to use the library with RxJava.
+The FloodMonitoringHarness example application illustrates how to use the library with RxJava. The API is RESTful and follows [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS), this means where the Android library requires a url you can use the id of an object: `getId()`
 
-Example:
+Example usage:
 
 ```java
 FloodMonitoring.getInstance().getThreeDayForecast()
