@@ -29,6 +29,8 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 #Flood Warnings
 
+`getAllWarnings()` returns all current alerts (including any that have been removedin the last 24 hours).
+
 `getAreaWarnings(double latitude, double longitude, int distance)` returns any flood alerts in the area as an array of FloodWarning objects.
 
 `getFloodAreaFromUrl(String url)` returns a `Flood` object containing the `FloodArea` including latitude and longitude for plotting warning locations on a map.
