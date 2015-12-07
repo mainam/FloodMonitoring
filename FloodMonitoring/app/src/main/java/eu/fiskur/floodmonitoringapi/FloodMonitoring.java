@@ -13,8 +13,8 @@ import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
 import eu.fiskur.floodmonitoringapi.stations.Measure;
 import eu.fiskur.floodmonitoringapi.deserializers.MeasureDeserializer;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
-import eu.fiskur.floodmonitoringapi.stations.Station;
-import eu.fiskur.floodmonitoringapi.stations.Stations;
+import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
+import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Flood;
 import eu.fiskur.floodmonitoringapi.model.Floods;
@@ -65,13 +65,7 @@ public class FloodMonitoring {
             builder.client(client);
         }
 
-        //There's a bug in the data.gov API where a field named 'label' in Stations sometimes returns a string, sometimes a string[]:
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
-                .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
-                .registerTypeAdapter(Reading.class, new ReadingDeserializer())
-                //.registerTypeAdapter(RemedialFloodWarning.class, new RemedialFloodWarningAdapter())
-                .create();
+        Gson gson = GSONProvider.getRestGson();
         builder.addConverterFactory(GsonConverterFactory.create(gson));
         builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
@@ -129,20 +123,22 @@ public class FloodMonitoring {
         return rest.getFloodAreaFromUrl(url);
     }
 
-    //Follow 3 methods all return list of StationOverview objects:
-    public Observable<Stations> getAllStations(){
+    /*
+        Stations/River Levels
+     */
+    public Observable<StationsWrapper> getAllStations(){
         return rest.getStations(null, null, null, null);
     }
 
-    public Observable<Stations> getCountyStations(String county){
+    public Observable<StationsWrapper> getCountyStations(String county){
         return rest.getStations(county, null, null, null);
     }
 
-    public Observable<Stations> getAreaStations(double latutide, double longitude, int distance){
+    public Observable<StationsWrapper> getAreaStations(double latutide, double longitude, int distance){
         return rest.getStations(null, latutide, longitude, distance);
     }
 
-    public Observable<Station> getStation(String url){
+    public Observable<StationWrapper> getStation(String url){
         return rest.getStationFromUrl(url);
     }
 

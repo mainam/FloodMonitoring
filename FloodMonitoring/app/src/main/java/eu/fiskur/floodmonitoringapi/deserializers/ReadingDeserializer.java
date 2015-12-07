@@ -20,8 +20,7 @@ public class ReadingDeserializer implements JsonDeserializer<Reading> {
             reading.setId(json.getAsString());
             return reading;
         }else{
-            Reading reading = GSONProvider.getGSON().fromJson(json, Reading.class);
-            return reading;
+            return GSONProvider.getGSON().fromJson(json, Reading.class);
         }
     }
 }

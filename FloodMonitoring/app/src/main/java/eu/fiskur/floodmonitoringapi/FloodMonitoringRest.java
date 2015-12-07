@@ -3,8 +3,8 @@ package eu.fiskur.floodmonitoringapi;
 import com.squareup.okhttp.ResponseBody;
 
 import eu.fiskur.floodmonitoringapi.model.Readings;
-import eu.fiskur.floodmonitoringapi.stations.Station;
-import eu.fiskur.floodmonitoringapi.stations.Stations;
+import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
+import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Flood;
 import eu.fiskur.floodmonitoringapi.model.Floods;
@@ -37,7 +37,7 @@ public interface FloodMonitoringRest {
 
     //Measurement stations
     @GET("id/stations")
-    Observable<Stations> getStations(
+    Observable<StationsWrapper> getStations(
             @Query("county") String county,
             @Query("lat") Double lat,
             @Query("long") Double lon,
@@ -45,7 +45,7 @@ public interface FloodMonitoringRest {
     );
 
     @GET
-    Observable<Station> getStationFromUrl(@Url String url);
+    Observable<StationWrapper> getStationFromUrl(@Url String url);
 
     @GET
     Observable<Readings> getReadings(

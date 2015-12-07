@@ -2,14 +2,12 @@ package eu.fiskur.floodmonitoringapi.stations;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 import eu.fiskur.floodmonitoringapi.model.Meta;
 
-public class Stations {
+public class StationWrapper {
     @SerializedName("@context") String context;
     Meta meta;
-    List<StationOverview> items;
+    StationDetail items;
 
     public String getContext() {
         return context;
@@ -27,11 +25,15 @@ public class Stations {
         this.meta = meta;
     }
 
-    public List<StationOverview> getItems() {
+    public StationDetail getItems() {
         return items;
     }
 
-    public void setItems(List<StationOverview> items) {
+    public void setItems(StationDetail items) {
         this.items = items;
+    }
+
+    public StationDetail getStation(){
+        return items;
     }
 }

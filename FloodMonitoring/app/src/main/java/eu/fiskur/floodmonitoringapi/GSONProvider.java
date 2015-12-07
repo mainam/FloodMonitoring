@@ -12,15 +12,23 @@ import eu.fiskur.floodmonitoringapi.stations.Reading;
 
 public class GSONProvider {
 
-    private static Gson gson = null;
+    private static Gson restGson = null;
+    private static Gson vanillaGson = null;
 
     public static Gson getGSON(){
-        if(gson == null){
-            gson = new GsonBuilder()
-            .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
+        if(vanillaGson == null){
+            vanillaGson = new Gson();
+        }
+        return vanillaGson;
+    }
+
+    public static Gson getRestGson(){
+        if(restGson == null){
+            restGson = new GsonBuilder()
+                    .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
                     .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(Reading.class, new ReadingDeserializer()).create();
         }
-        return gson;
+        return restGson;
     }
 }

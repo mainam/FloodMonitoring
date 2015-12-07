@@ -154,7 +154,7 @@ public class FloodUtils {
         latitude and longitude pairs from JSON
 
      */
-    public List<LatLng> getPoints(String jsonStr){
+    public static List<LatLng> getPoints(String jsonStr){
         List<LatLng> points = new ArrayList<>();
         Pattern pattern = Pattern.compile("\\[([^\\[\\],]*),([^\\[\\],]*)]");
         Matcher latLonMatcher = pattern.matcher(jsonStr);
