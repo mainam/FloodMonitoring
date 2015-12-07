@@ -2,12 +2,12 @@ package eu.fiskur.floodmonitoringapi;
 
 import com.squareup.okhttp.ResponseBody;
 
-import eu.fiskur.floodmonitoringapi.model.FloodArea;
-import eu.fiskur.floodmonitoringapi.model.Polygon;
 import eu.fiskur.floodmonitoringapi.model.Readings;
-import eu.fiskur.floodmonitoringapi.model.Stations;
+import eu.fiskur.floodmonitoringapi.stations.Station;
+import eu.fiskur.floodmonitoringapi.stations.Stations;
 import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
-import eu.fiskur.floodmonitoringapi.model.Warnings;
+import eu.fiskur.floodmonitoringapi.model.Flood;
+import eu.fiskur.floodmonitoringapi.model.Floods;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
@@ -19,7 +19,7 @@ public interface FloodMonitoringRest {
 
     //Flood warnings and alerts
     @GET("id/floods")
-    Observable<Warnings> getWarnings(
+    Observable<Floods> getWarnings(
             @Query("min-severity") Integer minSeverity,
             @Query("county") String county,
             @Query("lat") Double lat,
@@ -28,9 +28,12 @@ public interface FloodMonitoringRest {
     );
 
     @GET("id/floodAreas/{floodAreaID}")
-    Observable<FloodArea> getFloodArea(
+    Observable<Floods> getFloodArea(
             @Path("floodAreaID") String floodAreaId
     );
+
+    @GET
+    Observable<Flood> getFloodAreaFromUrl(@Url String url);
 
     //Measurement stations
     @GET("id/stations")
@@ -42,10 +45,28 @@ public interface FloodMonitoringRest {
     );
 
     @GET
+    Observable<Station> getStationFromUrl(@Url String url);
+
+    @GET
     Observable<Readings> getReadings(
             @Url String url,
             @Query("_sorted") int sorted,
             @Query("_limit") int count
+    );
+
+    @GET
+    Observable<Readings> getReadingsToday(
+            @Url String url,
+            @Query("_sorted") int sorted,
+            @Query("today") int count
+    );
+
+    @GET
+    Observable<Readings> getReadingsDays(
+            @Url String url,
+            @Query("_sorted") int sorted,
+            @Query("startdate") String startDate,
+            @Query("enddate") String endDate
     );
 
     //3 day forecast
@@ -59,6 +80,6 @@ public interface FloodMonitoringRest {
 
 
     @GET
-    Observable<Polygon> getPolygon(@Url String url);
+    Observable<ResponseBody> getRawResponse(@Url String url);
 
 }

@@ -2,11 +2,12 @@ package eu.fiskur.floodmonitoringapi.model;
 
 import android.support.annotation.NonNull;
 
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Comparator;
 
-public class WarningItem implements Comparable<WarningItem>{
+public class FloodWarning implements Comparable<FloodWarning>{
     @SerializedName("@id") String id;
     String description;
     String eaAreaName;
@@ -24,38 +25,6 @@ public class WarningItem implements Comparable<WarningItem>{
     boolean isHeader = false;
     String headerLabel;
 
-    public void setIsHeader(boolean isHeader, String headerLabel){
-        this.isHeader = isHeader;
-        this.headerLabel = headerLabel;
-    }
-
-    public boolean isHeader(){
-        return isHeader;
-    }
-
-    public String getHeaderLabel(){
-        return headerLabel;
-    }
-
-    public String getLcounty() {
-        return lcounty;
-    }
-
-    public void setLcounty(String lcounty) {
-        this.lcounty = lcounty;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setSeverityLevel(Integer severityLevel) {
-        this.severityLevel = severityLevel;
-    }
 
     public String getId() {
         return id;
@@ -113,12 +82,20 @@ public class WarningItem implements Comparable<WarningItem>{
         this.isTidal = isTidal;
     }
 
-    public String getLabelCounty(){
+    public String getLcounty() {
         return lcounty;
     }
 
-    public void setLabelCounty(String lcounty){
+    public void setLcounty(String lcounty) {
         this.lcounty = lcounty;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getSeverity() {
@@ -129,8 +106,12 @@ public class WarningItem implements Comparable<WarningItem>{
         this.severity = severity;
     }
 
-    public int getSeverityLevel() {
+    public Integer getSeverityLevel() {
         return severityLevel;
+    }
+
+    public void setSeverityLevel(Integer severityLevel) {
+        this.severityLevel = severityLevel;
     }
 
     public String getTimeMessageChanged() {
@@ -157,64 +138,34 @@ public class WarningItem implements Comparable<WarningItem>{
         this.timeSeverityChanged = timeSeverityChanged;
     }
 
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-        if(id != null){
-            sb.append("@id: " + id + "\n");
-        }
-        if(description != null){
-            sb.append("Description: " + description + "\n");
-        }
-        if(eaAreaName != null){
-            sb.append("eaAreaName: " + eaAreaName + "\n");
-        }
-        if(eaRegionName != null){
-            sb.append("eaRegionName: " + eaRegionName + "\n");
-        }
-        if(floodArea != null){
-            if(floodArea != null){
-                sb.append("floodArea: \n" + floodArea.toString());
-            }
-        }
-        if(floodAreaID != null){
-            sb.append("floodAreaID: " + floodAreaID + "\n");
-        }
-        if(isTidal != null){
-            sb.append("isTidal: " + isTidal + "\n");
-        }
-        if(lcounty != null){
-            sb.append("lcounty: " + lcounty + "\n");
-        }
-        if(severity != null){
-            sb.append("severity: " + severity + "\n");
-        }
-        if(severityLevel != null){
-            sb.append("severityLevel: " + severityLevel + "\n");
-        }
-        if(timeMessageChanged != null){
-            sb.append("timeMessageChanged: " + timeMessageChanged + "\n");
-        }
-        if(timeRaised != null){
-            sb.append("timeRaised: " + timeRaised + "\n");
-        }
-        if(timeSeverityChanged != null){
-            sb.append("timeSeverityChanged: " + timeSeverityChanged + "\n");
-        }
+    public boolean isHeader() {
+        return isHeader;
+    }
 
-        return sb.toString();
+    public void setIsHeader(boolean isHeader, String headerLabel) {
+        this.isHeader = isHeader;
+        this.headerLabel = headerLabel;
+    }
+
+    public String getHeaderLabel() {
+        return headerLabel;
+    }
+
+    public void setHeaderLabel(String headerLabel) {
+        this.headerLabel = headerLabel;
     }
 
     @Override
-    public int compareTo(@NonNull WarningItem another) {
+    public int compareTo(@NonNull FloodWarning another) {
         return severityLevel - another.getSeverityLevel() ;
     }
 
-    public static Comparator<WarningItem> WarningItemComparator = new Comparator<WarningItem>() {
+    public static Comparator<FloodWarning> WarningItemComparator = new Comparator<FloodWarning>() {
 
-        public int compare(WarningItem warning1, WarningItem warning2) {
+        public int compare(FloodWarning warning1, FloodWarning warning2) {
             return warning1.compareTo(warning2);
         }
 
     };
+
 }

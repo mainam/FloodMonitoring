@@ -1,5 +1,15 @@
 package eu.fiskur.floodmonitoringapi;
 
+/*
+    Simple class for use with Retrofit/OkHttp request interception, if 'logOutput(true)' is set on the FloodMonitoring API
+    implementation can set their own listener here, eg:
+
+    FloodApiLogger.getInstance().setApiLogListener(new ApiLogListener(){
+        void apiLog(String message){
+            Log.d("SomeTag", message);
+        }
+    });
+ */
 public class FloodApiLogger {
 
     private static FloodApiLogger instance = null;

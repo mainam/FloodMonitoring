@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class FloodAreaExpanded {
     @SerializedName("@id") String id;
     String county;
-    WarningItem currentWarning;
+    String currentWarning;
     String description;
     String eaAreaName;
     String eaRegionName;
@@ -28,11 +28,11 @@ public class FloodAreaExpanded {
         this.id = id;
     }
 
-    public WarningItem getCurrentWarning() {
+    public String getCurrentWarning() {
         return currentWarning;
     }
 
-    public void setCurrentWarning(WarningItem currentWarning) {
+    public void setCurrentWarning(String currentWarning) {
         this.currentWarning = currentWarning;
     }
 

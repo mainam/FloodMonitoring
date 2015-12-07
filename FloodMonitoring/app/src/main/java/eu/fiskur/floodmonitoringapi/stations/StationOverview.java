@@ -1,10 +1,12 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.stations;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Station {
+import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
+
+public class StationOverview {
     @SerializedName("@id") String id;
     String RLOIid;
     String catchmentName;

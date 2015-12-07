@@ -1,9 +1,8 @@
 package eu.fiskur.floodmonitoringapi.model;
 
-import android.util.Log;
-
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
@@ -19,23 +18,17 @@ public class RemedialStringTypeAdapter extends TypeAdapter<RemedialStringType> {
     public RemedialStringType read(JsonReader in) throws IOException {
         RemedialStringType remedialType = new RemedialStringType();
 
-        try {
+        if(in.peek() == JsonToken.BEGIN_ARRAY){
+            ArrayList<String> labels = new ArrayList<String>();
+            in.beginArray();
+            while (in.hasNext()) {
+                labels.add(in.nextString());
+            }
+            in.endArray();
+            remedialType.setLabelArray(labels.toArray(new String[labels.size()]));
+        }else if(in.peek() == JsonToken.STRING){
             String label = in.nextString();
             remedialType.setLabel(label);
-        }catch(IllegalStateException ioe){
-            while (in.hasNext()) {
-                try {
-                    ArrayList<String> labels = new ArrayList<String>();
-                    in.beginArray();
-                    while (in.hasNext()) {
-                        labels.add(in.nextString());
-                    }
-                    in.endArray();
-                    remedialType.setLabelArray(labels.toArray(new String[labels.size()]));
-                }catch(IllegalStateException ioee){
-                    break;
-                }
-            }
         }
 
         return remedialType;
