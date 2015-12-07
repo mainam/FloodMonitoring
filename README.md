@@ -29,7 +29,7 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 #Flood Warnings
 
-`getAllWarnings()` returns all current alerts (including any that have been removedin the last 24 hours).
+`getAllWarnings()` returns all current alerts (including any that have been removed in the last 24 hours).
 
 `getAreaWarnings(double latitude, double longitude, int distance)` returns any flood alerts in the area as an array of FloodWarning objects.
 
@@ -41,7 +41,7 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 
 `getStation(String url)` returns the full measurement station detail.
 
-`getReadings(String url, int count)` gets the last `count` `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs, you can also use `getReadingsToday(String url)` and `getReadingsDays(String url, int days)` which will ge the last x days worth of reading (although the API docs state reading are hed for a month it only seems to return up to two weeks worth of readings).
+`getReadings(String url, int count)` gets the last `count` `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs, you can also use `getReadingsToday(String url)` and `getReadingsDays(String url, int days)` which will ge the last x days worth of reading (although the API docs state reading are held for a month it only seems to return up to two weeks worth of readings).
 
 
 
