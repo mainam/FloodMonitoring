@@ -135,7 +135,7 @@ public class FloodMonitoring {
         return rest.getStations(null, latutide, longitude, distance);
     }
 
-    public Observable<List<StationDetail>> getStation(String url){
+    public Observable<StationWrapper> getStation(String url){
         return rest.getStationFromUrl(url);
     }
 

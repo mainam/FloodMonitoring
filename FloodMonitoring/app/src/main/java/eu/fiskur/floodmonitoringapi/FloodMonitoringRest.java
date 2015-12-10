@@ -48,7 +48,7 @@ public interface FloodMonitoringRest {
     );
 
     @GET
-    Observable<List<StationDetail>> getStationFromUrl(@Url String url);
+    Observable<StationWrapper> getStationFromUrl(@Url String url);
 
     @GET
     Observable<Readings> getReadings(
