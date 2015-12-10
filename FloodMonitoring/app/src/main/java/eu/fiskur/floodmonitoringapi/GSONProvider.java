@@ -34,8 +34,8 @@ public class GSONProvider {
     public static Gson getRestGson(){
         if(restGson == null){
             restGson = new GsonBuilder()
-                    .registerTypeAdapter(new TypeToken<List<StationDetail>>() {}.getType(), new StationsDeserializer())
-                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>() {}.getType(), new FloodWarningDeserializer())
+                    .registerTypeAdapter(new TypeToken<List<StationDetail>>(){}.getType(), new StationsDeserializer())
+                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>(){}.getType(), new FloodWarningDeserializer())
                     .registerTypeAdapter(ThreeDayForecast.class, new ThreeDayDeserializer())
                     .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
                     .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
