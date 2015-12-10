@@ -2,12 +2,14 @@ package eu.fiskur.floodmonitoringapi;
 
 import com.squareup.okhttp.ResponseBody;
 
+import java.util.List;
+
+import eu.fiskur.floodmonitoringapi.model.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
+import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
-import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Flood;
-import eu.fiskur.floodmonitoringapi.model.Floods;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
@@ -19,7 +21,7 @@ public interface FloodMonitoringRest {
 
     //Flood warnings and alerts
     @GET("id/floods")
-    Observable<Floods> getWarnings(
+    Observable<List<FloodWarning>> getWarnings(
             @Query("min-severity") Integer minSeverity,
             @Query("county") String county,
             @Query("lat") Double lat,
@@ -28,7 +30,7 @@ public interface FloodMonitoringRest {
     );
 
     @GET("id/floodAreas/{floodAreaID}")
-    Observable<Floods> getFloodArea(
+    Observable<List<FloodWarning>> getFloodArea(
             @Path("floodAreaID") String floodAreaId
     );
 
@@ -69,9 +71,10 @@ public interface FloodMonitoringRest {
             @Query("enddate") String endDate
     );
 
-    //3 day forecast
     @GET("id/3dayforecast")
     Observable<ThreeDayForecast> get3DayForecast();
+
+
 
     //Base64 encoded images - day: 1, 2, or 3
     @GET("id/3dayforecast/image/{day}")

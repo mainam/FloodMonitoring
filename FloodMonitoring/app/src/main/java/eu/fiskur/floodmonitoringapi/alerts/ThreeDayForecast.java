@@ -1,10 +1,12 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.alerts;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ThreeDayForecastObj {
+import eu.fiskur.floodmonitoringapi.model.ForecastRisk;
+
+public class ThreeDayForecast {
     @SerializedName("@id") String id;
     String day1image;
     String day2image;

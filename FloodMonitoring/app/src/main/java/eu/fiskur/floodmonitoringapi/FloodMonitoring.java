@@ -1,23 +1,18 @@
 package eu.fiskur.floodmonitoringapi;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.ResponseBody;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import eu.fiskur.floodmonitoringapi.deserializers.ReadingDeserializer;
+import java.util.List;
+
+import eu.fiskur.floodmonitoringapi.model.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
-import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
-import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
-import eu.fiskur.floodmonitoringapi.stations.Measure;
-import eu.fiskur.floodmonitoringapi.deserializers.MeasureDeserializer;
-import eu.fiskur.floodmonitoringapi.stations.Reading;
+import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
-import eu.fiskur.floodmonitoringapi.model.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.model.Flood;
-import eu.fiskur.floodmonitoringapi.model.Floods;
 import eu.fiskur.floodmonitoringapi.utilities.FloodUtils;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -66,6 +61,7 @@ public class FloodMonitoring {
         }
 
         Gson gson = GSONProvider.getRestGson();
+
         builder.addConverterFactory(GsonConverterFactory.create(gson));
         builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
@@ -94,28 +90,28 @@ public class FloodMonitoring {
         return "https://flood-warning-information.service.gov.uk/riverlevels?lng=" + longitude + "&lat=" + latitude;
     }
 
-    public Observable<Floods> getAllWarnings(){
+    public Observable<List<FloodWarning>> getAllWarnings(){
         return rest.getWarnings(null, null, null, null, null);
     }
 
-    public Observable<Floods> getCountyWarnings(String county){
+    public Observable<List<FloodWarning>> getCountyWarnings(String county){
         return rest.getWarnings(null, county, null, null, null);
     }
 
-    public Observable<Floods> getWanringsMinSeverity(int minSeverity){
+    public Observable<List<FloodWarning>> getWanringsMinSeverity(int minSeverity){
         return rest.getWarnings(minSeverity, null, null, null, null);
     }
 
-    public Observable<Floods> getAreaWarnings(double latutide, double longitude, int distance){
+    public Observable<List<FloodWarning>> getAreaWarnings(double latutide, double longitude, int distance){
         return rest.getWarnings(null, null, latutide, longitude, distance);
     }
 
-    public Observable<Floods> getAreaWarnings(int minSeverity, double latutide, double longitude, int distance){
+    public Observable<List<FloodWarning>> getAreaWarnings(int minSeverity, double latutide, double longitude, int distance){
         return rest.getWarnings(minSeverity, null, latutide, longitude, distance);
     }
 
     //Includes latitude and longitude
-    public Observable<Floods> getFloodArea(String floodAreaID){
+    public Observable<List<FloodWarning>> getFloodArea(String floodAreaID){
         return rest.getFloodArea(floodAreaID);
     }
 
@@ -153,7 +149,7 @@ public class FloodMonitoring {
     }
 
     //end date is today
-    //start date is today - days
+    //start date is (today - days)
     public Observable<Readings> getReadingsDays(String url, int days){
         String endDate = FloodUtils.getTodaysDate();
         String startDate = FloodUtils.getPreviousDate(days);
@@ -164,5 +160,4 @@ public class FloodMonitoring {
     public Observable<ResponseBody> getRawResponse(String url){
         return rest.getRawResponse(url);
     }
-
 }

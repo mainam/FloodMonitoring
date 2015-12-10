@@ -71,6 +71,14 @@ public class GsonStationsTests {
         assertEquals("Little Br Helmshore - level-stage-i-15_min-m", measure.getLabel());
     }
 
+    @Test
+    public void multipleMeasuresTest(){
+        Gson gson = GSONProvider.getRestGson();
+        StationWrapper stationsWrapper = gson.fromJson(STAION_THREE_MEASURES, StationWrapper.class);
+        StationDetail station = stationsWrapper.getStation();
+        assertEquals(3, station.getMeasures().length);
+    }
+
     private static final String STATION = "{ \n" +
             "  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\" ,\n" +
             "  \"meta\" : { \n" +
@@ -222,4 +230,135 @@ public class GsonStationsTests {
             "  }\n" +
             "   ]\n" +
             "}\n";
+
+    private static final String STAION_THREE_MEASURES = "{ \n" +
+            "  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\" ,\n" +
+            "  \"meta\" : { \n" +
+            "    \"publisher\" : \"Environment Agency\" ,\n" +
+            "    \"licence\" : \"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" ,\n" +
+            "    \"documentation\" : \"http://environment.data.gov.uk/flood-monitoring/doc/reference\" ,\n" +
+            "    \"version\" : \"0.5\" ,\n" +
+            "    \"comment\" : \"Status: Beta service\" ,\n" +
+            "    \"hasFormat\" : [ \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061.rdf\", \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061.ttl\", \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061.html\" ]\n" +
+            "  }\n" +
+            "   ,\n" +
+            "  \"items\" : { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061\" ,\n" +
+            "    \"RLOIid\" : \"8343\" ,\n" +
+            "    \"catchmentName\" : \"Aire and Calder\" ,\n" +
+            "    \"dateOpened\" : \"2007-03-15\" ,\n" +
+            "    \"eaAreaName\" : \"North East - Yorkshire\" ,\n" +
+            "    \"eaRegionName\" : \"North East\" ,\n" +
+            "    \"easting\" : 397115 ,\n" +
+            "    \"gridReference\" : \"SD9711526245\" ,\n" +
+            "    \"label\" : \"Todmorden Callis Bridge\" ,\n" +
+            "    \"lat\" : 53.732576 ,\n" +
+            "    \"long\" : -2.045202 ,\n" +
+            "    \"measures\" : [\n" +
+            "      { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"label\" : \"Todmorden Callis Bridge - level-stage-i-15_min-m\" ,\n" +
+            "        \"latestReading\" : { \n" +
+            "          \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/L12061-level-stage-i-15_min-m/2015-12-07T05-15-00Z\" ,\n" +
+            "          \"date\" : \"2015-12-07\" ,\n" +
+            "          \"dateTime\" : \"2015-12-07T05:15:00Z\" ,\n" +
+            "          \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "          \"value\" : 0.298\n" +
+            "        }\n" +
+            "         ,\n" +
+            "        \"notation\" : \"L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"parameter\" : \"level\" ,\n" +
+            "        \"parameterName\" : \"Water Level\" ,\n" +
+            "        \"period\" : 900 ,\n" +
+            "        \"qualifier\" : \"Stage\" ,\n" +
+            "        \"station\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061\" ,\n" +
+            "        \"stationReference\" : \"L12061\" ,\n" +
+            "        \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/Measure\", \"http://environment.data.gov.uk/flood-monitoring/def/core/WaterLevel\" ] ,\n" +
+            "        \"unit\" : \"http://qudt.org/1.1/vocab/unit#Meter\" ,\n" +
+            "        \"unitName\" : \"m\" ,\n" +
+            "        \"valueType\" : \"instantaneous\"\n" +
+            "      },\n" +
+            "      { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"label\" : \"Todmorden Callis Bridge - level-stage-i-15_min-m\" ,\n" +
+            "        \"latestReading\" : { \n" +
+            "          \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/L12061-level-stage-i-15_min-m/2015-12-07T05-15-00Z\" ,\n" +
+            "          \"date\" : \"2015-12-07\" ,\n" +
+            "          \"dateTime\" : \"2015-12-07T05:15:00Z\" ,\n" +
+            "          \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "          \"value\" : 0.298\n" +
+            "        }\n" +
+            "         ,\n" +
+            "        \"notation\" : \"L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"parameter\" : \"level\" ,\n" +
+            "        \"parameterName\" : \"Water Level\" ,\n" +
+            "        \"period\" : 900 ,\n" +
+            "        \"qualifier\" : \"Stage\" ,\n" +
+            "        \"station\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061\" ,\n" +
+            "        \"stationReference\" : \"L12061\" ,\n" +
+            "        \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/Measure\", \"http://environment.data.gov.uk/flood-monitoring/def/core/WaterLevel\" ] ,\n" +
+            "        \"unit\" : \"http://qudt.org/1.1/vocab/unit#Meter\" ,\n" +
+            "        \"unitName\" : \"m\" ,\n" +
+            "        \"valueType\" : \"instantaneous\"\n" +
+            "      },\n" +
+            "      { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"label\" : \"Todmorden Callis Bridge - level-stage-i-15_min-m\" ,\n" +
+            "        \"latestReading\" : { \n" +
+            "          \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/L12061-level-stage-i-15_min-m/2015-12-07T05-15-00Z\" ,\n" +
+            "          \"date\" : \"2015-12-07\" ,\n" +
+            "          \"dateTime\" : \"2015-12-07T05:15:00Z\" ,\n" +
+            "          \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/L12061-level-stage-i-15_min-m\" ,\n" +
+            "          \"value\" : 0.298\n" +
+            "        }\n" +
+            "         ,\n" +
+            "        \"notation\" : \"L12061-level-stage-i-15_min-m\" ,\n" +
+            "        \"parameter\" : \"level\" ,\n" +
+            "        \"parameterName\" : \"Water Level\" ,\n" +
+            "        \"period\" : 900 ,\n" +
+            "        \"qualifier\" : \"Stage\" ,\n" +
+            "        \"station\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061\" ,\n" +
+            "        \"stationReference\" : \"L12061\" ,\n" +
+            "        \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/Measure\", \"http://environment.data.gov.uk/flood-monitoring/def/core/WaterLevel\" ] ,\n" +
+            "        \"unit\" : \"http://qudt.org/1.1/vocab/unit#Meter\" ,\n" +
+            "        \"unitName\" : \"m\" ,\n" +
+            "        \"valueType\" : \"instantaneous\"\n" +
+            "      }\n" +
+            "    ]\n" +
+            "     ,\n" +
+            "    \"northing\" : 426245 ,\n" +
+            "    \"notation\" : \"L12061\" ,\n" +
+            "    \"riverName\" : \"River Calder\" ,\n" +
+            "    \"stageScale\" : { \n" +
+            "      \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061/stageScale\" ,\n" +
+            "      \"datum\" : 108.321 ,\n" +
+            "      \"highestRecent\" : { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061/stageScale/highestRecent\" ,\n" +
+            "        \"dateTime\" : \"2012-06-22T21:30:00\" ,\n" +
+            "        \"value\" : 2.226\n" +
+            "      }\n" +
+            "       ,\n" +
+            "      \"maxOnRecord\" : { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061/stageScale/maxOnRecord\" ,\n" +
+            "        \"dateTime\" : \"2012-06-22T21:30:00\" ,\n" +
+            "        \"value\" : 2.226\n" +
+            "      }\n" +
+            "       ,\n" +
+            "      \"minOnRecord\" : { \n" +
+            "        \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/id/stations/L12061/stageScale/minOnRecord\" ,\n" +
+            "        \"dateTime\" : \"2013-01-18T19:00:00\" ,\n" +
+            "        \"value\" : -0.152\n" +
+            "      }\n" +
+            "       ,\n" +
+            "      \"scaleMax\" : 3 ,\n" +
+            "      \"typicalRangeLow\" : -0.01\n" +
+            "    }\n" +
+            "     ,\n" +
+            "    \"stationReference\" : \"L12061\" ,\n" +
+            "    \"town\" : \"High Green\" ,\n" +
+            "    \"type\" : [ \"http://environment.data.gov.uk/flood-monitoring/def/core/SingleLevel\", \"http://environment.data.gov.uk/flood-monitoring/def/core/Station\" ] ,\n" +
+            "    \"wiskiID\" : \"L12061\"\n" +
+            "  }\n" +
+            "}\n" +
+            "\n";
 }
