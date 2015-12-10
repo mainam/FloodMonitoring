@@ -1,4 +1,4 @@
-# FloodMonitoring - in development, docs may be out of date, things may break.
+# FloodMonitoring
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
@@ -54,11 +54,11 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #Water Level Stations
 
-`getAreaStations(double latitude, double longitude, int distance)` returns an array of `StationOverview` objects containing some detail, but you should use the `id` to fetch the full `Station` object:
+`getAreaStations(double latitude, double longitude, int distance)` returns `List<StationOverview>` containing some detail, but you should use the `id` to fetch the full `Station` object:
 
-`getStation(String url)` returns the full measurement station detail.
+`getStation(String url)` returns the full `StationDetail`.
 
-`getReadings(String url, int count)` gets the last `count` `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs, you can also use `getReadingsToday(String url)` and `getReadingsDays(String url, int days)` which will ge the last x days worth of reading (although the API docs state reading are held for a month it only seems to return up to two weeks worth of readings).
+`getReadings(String url, int count)` gets the last `count` `Reading` objects, normally taken at 15 minute intervals that you can use to create graphs, you can also use `getReadingsToday(String url)` and `getReadingsDays(String url, int days)` which will ge the last x days worth of readings (although the API docs state reading are held for a month it only seems to return up to two weeks worth of readings).
 
 
 
