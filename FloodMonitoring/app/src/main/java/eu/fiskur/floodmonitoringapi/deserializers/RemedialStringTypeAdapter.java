@@ -1,4 +1,4 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.deserializers;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

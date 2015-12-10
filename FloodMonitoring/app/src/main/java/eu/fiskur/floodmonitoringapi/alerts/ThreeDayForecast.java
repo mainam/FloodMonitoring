@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.ForecastRisk;
-
 public class ThreeDayForecast {
     @SerializedName("@id") String id;
     String day1image;

@@ -1,4 +1,4 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.deserializers;
 
 public class RemedialStringType {
     String label = null;

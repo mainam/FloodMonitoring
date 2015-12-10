@@ -1,4 +1,4 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.alerts;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -7,8 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Comparator;
 
-import eu.fiskur.floodmonitoringapi.model.FloodAreaExpanded;
-
 public class FloodWarning implements Comparable<FloodWarning>{
     @SerializedName("@id") String id;
     String description;

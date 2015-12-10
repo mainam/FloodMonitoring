@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
+import eu.fiskur.floodmonitoringapi.deserializers.RemedialStringType;
 
 public class StationOverview {
     @SerializedName("@id") String id;

@@ -11,7 +11,6 @@ import java.util.List;
 
 import eu.fiskur.floodmonitoringapi.GSONProvider;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
-import eu.fiskur.floodmonitoringapi.stations.Readings;
 
 public class ReadingsDeserializer implements JsonDeserializer<List<Reading>> {
 

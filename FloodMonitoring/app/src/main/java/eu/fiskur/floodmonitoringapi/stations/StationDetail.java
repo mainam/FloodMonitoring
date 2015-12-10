@@ -2,9 +2,7 @@ package eu.fiskur.floodmonitoringapi.stations;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
+import eu.fiskur.floodmonitoringapi.deserializers.RemedialStringType;
 
 public class StationDetail {
     @SerializedName("@id") String id;
