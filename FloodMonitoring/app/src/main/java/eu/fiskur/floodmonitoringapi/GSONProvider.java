@@ -23,6 +23,7 @@ public class GSONProvider {
 
     private static Gson restGson = null;
     private static Gson vanillaGson = null;
+    private static Gson remedialStringGson = null;
 
     public static Gson getGSON(){
         if(vanillaGson == null){
@@ -31,14 +32,23 @@ public class GSONProvider {
         return vanillaGson;
     }
 
+    public static Gson getGSONRemedialString(){
+        if(remedialStringGson == null){
+            remedialStringGson = new GsonBuilder()
+                    .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
+                    .create();
+        }
+        return remedialStringGson;
+    }
+
     public static Gson getRestGson(){
         if(restGson == null){
             restGson = new GsonBuilder()
+                    .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
+                    .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(new TypeToken<List<StationOverview>>(){}.getType(), new StationOverviewDeserializer())
                     .registerTypeAdapter(new TypeToken<List<FloodWarning>>(){}.getType(), new FloodWarningDeserializer())
                     .registerTypeAdapter(ThreeDayForecast.class, new ThreeDayDeserializer())
-                    .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
-                    .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(Reading.class, new ReadingDeserializer()).create();
         }
         return restGson;

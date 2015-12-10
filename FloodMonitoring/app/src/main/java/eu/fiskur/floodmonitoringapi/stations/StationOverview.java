@@ -71,6 +71,7 @@ public class StationOverview {
         this.eee = eee;
     }
 
+
     public RemedialStringType getLabel() {
         return label;
     }
