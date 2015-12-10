@@ -58,7 +58,7 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 `getAreaWarnings(double latitude, double longitude, int distance)` returns `List<FloodWarning>` of any flood alerts in the area.
 
-`getFloodAreaFromUrl(String url)` returns a `Flood` object containing the `FloodArea` including latitude and longitude for plotting warning locations on a map.
+`getFloodAreaFromUrl(String url)` returns the `FloodArea` including latitude and longitude for plotting warning locations on a map.
 
 #Water Level Stations
 
