@@ -7,9 +7,8 @@ import java.util.List;
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
-import eu.fiskur.floodmonitoringapi.stations.Readings;
+import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
-import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
@@ -47,7 +46,7 @@ public interface FloodMonitoringRest {
     );
 
     @GET
-    Observable<StationWrapper> getStationFromUrl(@Url String url);
+    Observable<StationDetail> getStationFromUrl(@Url String url);
 
     @GET
     Observable<List<Reading>> getReadings(

@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 import eu.fiskur.floodmonitoringapi.stations.Measure;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
 import eu.fiskur.floodmonitoringapi.stations.StationDetail;
-import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 
 public class GsonStationsTests {
@@ -20,7 +19,8 @@ public class GsonStationsTests {
     @Test
     public void stationsGSONTest(){
         Gson gson = GSONProvider.getRestGson();
-        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>(){}.getType());
+        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>() {
+        }.getType());
         assertEquals(2, stations.size());
     }
 
@@ -38,7 +38,8 @@ public class GsonStationsTests {
     @Test
     public void stationOverviewFieldsTest(){
         Gson gson = GSONProvider.getRestGson();
-        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>(){}.getType());
+        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>() {
+        }.getType());
         StationOverview overview = stations.get(0);
         assertEquals("http://environment.data.gov.uk/flood-monitoring/id/stations/690138", overview.getId());
         assertEquals("5116", overview.getRLOIid());
@@ -49,18 +50,24 @@ public class GsonStationsTests {
     }
 
     @Test
+    public void multipleMeasuresTest(){
+        Gson gson = GSONProvider.getRestGson();
+        StationDetail station = gson.fromJson(STAION_THREE_MEASURES, StationDetail.class);
+        assertEquals(3, station.getMeasures().length);
+    }
+
+
+    @Test
     public void stationTest(){
         Gson gson = GSONProvider.getRestGson();
-        StationWrapper stationWrapper = gson.fromJson(STATION, StationWrapper.class);
-        StationDetail station = stationWrapper.getStation();
+        StationDetail station = gson.fromJson(STATION, StationDetail.class);
         assertEquals(1, station.getMeasures().length);
     }
 
     @Test
     public void stationDetailFieldsTest(){
         Gson gson = GSONProvider.getRestGson();
-        StationWrapper stationsWrapper = gson.fromJson(STATION, StationWrapper.class);
-        StationDetail station = stationsWrapper.getStation();
+        StationDetail station = gson.fromJson(STATION, StationDetail.class);
         assertEquals("http://environment.data.gov.uk/flood-monitoring/id/stations/690142", station.getId());
         assertEquals("5082", station.getRLOIid());
         assertEquals("Northern Manchester", station.getCatchmentName());
@@ -71,19 +78,10 @@ public class GsonStationsTests {
     @Test
     public void measureTest(){
         Gson gson = GSONProvider.getRestGson();
-        StationWrapper stationsWrapper = gson.fromJson(STATION, StationWrapper.class);
-        StationDetail station = stationsWrapper.getStation();
+        StationDetail station = gson.fromJson(STATION, StationDetail.class);
         Measure measure = station.getMeasures()[0];
         assertEquals("http://environment.data.gov.uk/flood-monitoring/id/measures/690142-level-stage-i-15_min-m", measure.getId());
         assertEquals("Little Br Helmshore - level-stage-i-15_min-m", measure.getLabel());
-    }
-
-    @Test
-    public void multipleMeasuresTest(){
-        Gson gson = GSONProvider.getRestGson();
-        StationWrapper stationsWrapper = gson.fromJson(STAION_THREE_MEASURES, StationWrapper.class);
-        StationDetail station = stationsWrapper.getStation();
-        assertEquals(3, station.getMeasures().length);
     }
 
     @Test

@@ -9,10 +9,9 @@ import java.util.List;
 
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
-import eu.fiskur.floodmonitoringapi.stations.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
+import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
-import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.utilities.FloodUtils;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -134,7 +133,7 @@ public class FloodMonitoring {
         return rest.getStations(null, latutide, longitude, distance);
     }
 
-    public Observable<StationWrapper> getStation(String url){
+    public Observable<StationDetail> getStation(String url){
         return rest.getStationFromUrl(url);
     }
 

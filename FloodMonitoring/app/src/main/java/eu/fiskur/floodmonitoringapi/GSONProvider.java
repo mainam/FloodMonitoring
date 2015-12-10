@@ -11,6 +11,7 @@ import eu.fiskur.floodmonitoringapi.deserializers.MeasureDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ReadingDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ReadingsDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.SingleFloodWarningDeserializer;
+import eu.fiskur.floodmonitoringapi.deserializers.StationDetailDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.StationOverviewDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ThreeDayDeserializer;
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
@@ -19,6 +20,7 @@ import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.Measure;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
+import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 
 public class GSONProvider {
@@ -38,6 +40,7 @@ public class GSONProvider {
         if(remedialStringGson == null){
             remedialStringGson = new GsonBuilder()
                     .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
+                    .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .create();
         }
         return remedialStringGson;
@@ -46,6 +49,7 @@ public class GSONProvider {
     public static Gson getRestGson(){
         if(restGson == null){
             restGson = new GsonBuilder()
+                    .registerTypeAdapter(StationDetail.class, new StationDetailDeserializer())
                     .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
                     .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(new TypeToken<List<StationOverview>>(){}.getType(), new StationOverviewDeserializer())
