@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.FloodWarning;
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import timber.log.Timber;
 
 public class RemedialFloodWarningAdapter extends TypeAdapter<RemedialFloodWarning> {

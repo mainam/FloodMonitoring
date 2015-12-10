@@ -17,7 +17,7 @@ public class StationOverviewDeserializer implements JsonDeserializer<List<Statio
 
     @Override
     public List<StationOverview> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonArray content = json.getAsJsonObject().get("items").getAsJsonArray();
+        JsonElement content = json.getAsJsonObject().get("items");
         return GSONProvider.getGSONRemedialString().fromJson(content, new TypeToken<List<StationOverview>>(){}.getType());
     }
 }

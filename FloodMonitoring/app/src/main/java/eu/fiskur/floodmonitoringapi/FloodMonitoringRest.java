@@ -4,13 +4,11 @@ import com.squareup.okhttp.ResponseBody;
 
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.FloodWarning;
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
-import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
-import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.Flood;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -37,7 +35,7 @@ public interface FloodMonitoringRest {
     );
 
     @GET
-    Observable<Flood> getFloodAreaFromUrl(@Url String url);
+    Observable<FloodWarning> getFloodAreaFromUrl(@Url String url);
 
     //Measurement stations
     @GET("id/stations")

@@ -9,9 +9,10 @@ import java.util.List;
 import eu.fiskur.floodmonitoringapi.deserializers.FloodWarningDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.MeasureDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ReadingDeserializer;
+import eu.fiskur.floodmonitoringapi.deserializers.SingleFloodWarningDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.StationOverviewDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ThreeDayDeserializer;
-import eu.fiskur.floodmonitoringapi.model.FloodWarning;
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringType;
 import eu.fiskur.floodmonitoringapi.model.RemedialStringTypeAdapter;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
@@ -47,7 +48,9 @@ public class GSONProvider {
                     .registerTypeAdapter(RemedialStringType.class, new RemedialStringTypeAdapter())
                     .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(new TypeToken<List<StationOverview>>(){}.getType(), new StationOverviewDeserializer())
-                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>(){}.getType(), new FloodWarningDeserializer())
+                    .registerTypeAdapter(FloodWarning.class, new SingleFloodWarningDeserializer())
+                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>() {
+                    }.getType(), new FloodWarningDeserializer())
                     .registerTypeAdapter(ThreeDayForecast.class, new ThreeDayDeserializer())
                     .registerTypeAdapter(Reading.class, new ReadingDeserializer()).create();
         }

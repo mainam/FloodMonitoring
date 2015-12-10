@@ -1,4 +1,4 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.alerts;
 
 import android.support.annotation.NonNull;
 
@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Comparator;
+
+import eu.fiskur.floodmonitoringapi.model.FloodAreaExpanded;
 
 public class FloodWarning implements Comparable<FloodWarning>{
     @SerializedName("@id") String id;

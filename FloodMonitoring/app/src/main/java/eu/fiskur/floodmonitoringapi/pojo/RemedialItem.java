@@ -2,7 +2,7 @@ package eu.fiskur.floodmonitoringapi.pojo;
 
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.FloodWarning;
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 
 public class RemedialItem {
     List<FloodWarning> items;

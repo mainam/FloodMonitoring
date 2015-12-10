@@ -2,6 +2,8 @@ package eu.fiskur.floodmonitoringapi.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
+
 public class Flood {
     @SerializedName("@context") String context;
     Meta meta;

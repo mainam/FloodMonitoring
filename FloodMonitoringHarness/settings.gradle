@@ -1,3 +1,0 @@
-include ':app'
-include ':floodmonitoringapi'
-project(':floodmonitoringapi').projectDir = new File(settingsDir, '../FloodMonitoring/app')

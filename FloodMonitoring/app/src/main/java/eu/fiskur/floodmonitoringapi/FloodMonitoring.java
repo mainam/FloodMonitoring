@@ -7,13 +7,11 @@ import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.List;
 
-import eu.fiskur.floodmonitoringapi.model.FloodWarning;
+import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
-import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
-import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.Flood;
 import eu.fiskur.floodmonitoringapi.utilities.FloodUtils;
 import retrofit.GsonConverterFactory;
@@ -100,7 +98,7 @@ public class FloodMonitoring {
         return rest.getWarnings(null, county, null, null, null);
     }
 
-    public Observable<List<FloodWarning>> getWanringsMinSeverity(int minSeverity){
+    public Observable<List<FloodWarning>> getWarningsMinSeverity(int minSeverity){
         return rest.getWarnings(minSeverity, null, null, null, null);
     }
 
@@ -117,7 +115,7 @@ public class FloodMonitoring {
         return rest.getFloodArea(floodAreaID);
     }
 
-    public Observable<Flood> getFloodAreaFromUrl(String url){
+    public Observable<FloodWarning> getFloodAreaFromUrl(String url){
         return rest.getFloodAreaFromUrl(url);
     }
 

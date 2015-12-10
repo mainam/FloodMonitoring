@@ -1,6 +1,5 @@
 package eu.fiskur.floodmonitoringapi.deserializers;
 
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -13,11 +12,12 @@ import java.util.List;
 import eu.fiskur.floodmonitoringapi.GSONProvider;
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
 
-public class FloodWarningDeserializer implements JsonDeserializer<List<FloodWarning>> {
+
+public class SingleFloodWarningDeserializer implements JsonDeserializer<FloodWarning> {
 
     @Override
-    public List<FloodWarning> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public FloodWarning deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement content = json.getAsJsonObject().get("items");
-        return GSONProvider.getGSON().fromJson(content, new TypeToken<List<FloodWarning>>(){}.getType());
+        return GSONProvider.getGSONRemedialString().fromJson(content, FloodWarning.class);
     }
 }
