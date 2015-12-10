@@ -30,6 +30,11 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	    }
 	});
 ```
+#TODO
+
+- There's still some refactoring to do
+- More docs
+- Get working with https://jitpack.io
 
 #Logging
 
