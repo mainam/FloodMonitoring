@@ -50,13 +50,13 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #3 Day Forecast
 
-`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` containing the image bytes, a convenience method in the utils class helps populate an imageview: `FloodUtils.loadImage(responseBody, imageView);`. Alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
+`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` containing the image bytes, a convenience method in the utils class helps populate an imageview: `FloodUtils.loadImage(responseBody, imageView)`. Alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
 
 #Flood Warnings
 
 `getAllWarnings()` returns `List<FloodWarning>` of all current alerts (including any that have been removed in the last 24 hours, use `getSeverityLevel()` to build your UI).
 
-`getAreaWarnings(double latitude, double longitude, int distance)` returns `List<FloodWarning>` of any flood alerts in the area as an array of FloodWarning objects.
+`getAreaWarnings(double latitude, double longitude, int distance)` returns `List<FloodWarning>` of any flood alerts in the area.
 
 `getFloodAreaFromUrl(String url)` returns a `Flood` object containing the `FloodArea` including latitude and longitude for plotting warning locations on a map.
 
