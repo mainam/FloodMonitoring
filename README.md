@@ -1,4 +1,4 @@
-# FloodMonitoring - in development, do not use.
+# FloodMonitoring - in development, docs may be out of date, things may break.
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
