@@ -5,11 +5,11 @@ import com.squareup.okhttp.ResponseBody;
 import java.util.List;
 
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
-import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
+import eu.fiskur.floodmonitoringapi.stations.Reading;
+import eu.fiskur.floodmonitoringapi.stations.Readings;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
-import eu.fiskur.floodmonitoringapi.model.Flood;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
@@ -50,21 +50,21 @@ public interface FloodMonitoringRest {
     Observable<StationWrapper> getStationFromUrl(@Url String url);
 
     @GET
-    Observable<Readings> getReadings(
+    Observable<List<Reading>> getReadings(
             @Url String url,
             @Query("_sorted") int sorted,
             @Query("_limit") int count
     );
 
     @GET
-    Observable<Readings> getReadingsToday(
+    Observable<List<Reading>> getReadingsToday(
             @Url String url,
             @Query("_sorted") int sorted,
             @Query("today") int count
     );
 
     @GET
-    Observable<Readings> getReadingsDays(
+    Observable<List<Reading>> getReadingsDays(
             @Url String url,
             @Query("_sorted") int sorted,
             @Query("startdate") String startDate,

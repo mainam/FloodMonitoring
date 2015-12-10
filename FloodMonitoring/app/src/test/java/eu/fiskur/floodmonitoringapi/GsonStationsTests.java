@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 import eu.fiskur.floodmonitoringapi.stations.Measure;
+import eu.fiskur.floodmonitoringapi.stations.Reading;
 import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
@@ -26,7 +27,8 @@ public class GsonStationsTests {
     @Test
     public void stationsOverviewTest(){
         Gson gson = GSONProvider.getRestGson();
-        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>(){}.getType());
+        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>() {
+        }.getType());
         StationOverview overview = stations.get(0);
         assertEquals(2, overview.getMeasures().size());
     }
@@ -83,6 +85,329 @@ public class GsonStationsTests {
         StationDetail station = stationsWrapper.getStation();
         assertEquals(3, station.getMeasures().length);
     }
+
+    @Test
+    public void readingsTest(){
+        Gson gson = GSONProvider.getRestGson();
+        List<Reading> readings = gson.fromJson(STATION_READINGS, new TypeToken<List<Reading>>(){}.getType());
+        assertEquals(50, readings.size());
+    }
+
+    private static final String STATION_READINGS = "{ \n" +
+            "  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\" ,\n" +
+            "  \"meta\" : { \n" +
+            "    \"publisher\" : \"Environment Agency\" ,\n" +
+            "    \"licence\" : \"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" ,\n" +
+            "    \"documentation\" : \"http://environment.data.gov.uk/flood-monitoring/doc/reference\" ,\n" +
+            "    \"version\" : \"0.5\" ,\n" +
+            "    \"comment\" : \"Status: Beta service\" ,\n" +
+            "    \"limit\" : 50 ,\n" +
+            "    \"hasFormat\" : [ \"http://environment.data.gov.uk/flood-monitoring/id/stations/690140/readings.csv?_sorted=1&_limit=50\" ]\n" +
+            "  }\n" +
+            "   ,\n" +
+            "  \"items\" : [ { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T16-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T16:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.754\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T15-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T15:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.765\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T15-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T15:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.774\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T15-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T15:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.785\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T15-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T15:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.794\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T14-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T14:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.803\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T14-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T14:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.816\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T14-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T14:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.827\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T14-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T14:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.841\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T13-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T13:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.855\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T13-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T13:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.87\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T13-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T13:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.888\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T13-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T13:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.907\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T12-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T12:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.927\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T12-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T12:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.949\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T12-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T12:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.975\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T12-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T12:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.997\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T11-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T11:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.026\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T11-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T11:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.051\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T11-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T11:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.076\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T11-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T11:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.101\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T10-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T10:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.131\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T10-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T10:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.202\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T10-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T10:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.214\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T10-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T10:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.219\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T09-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T09:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.218\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T09-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T09:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.214\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T09-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T09:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.208\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T09-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T09:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.201\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T08-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T08:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.194\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T08-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T08:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.188\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T08-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T08:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.183\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T08-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T08:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.18\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T07-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T07:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.177\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T07-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T07:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.175\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T07-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T07:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.173\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T07-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T07:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.167\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T06-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T06:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.163\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T06-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T06:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.157\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T06-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T06:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.149\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T06-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T06:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.135\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T05-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T05:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.115\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T05-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T05:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.091\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T05-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T05:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.059\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T05-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T05:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 1.019\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T04-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T04:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.965\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T04-30-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T04:30:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.907\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T04-15-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T04:15:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.798\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T04-00-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T04:00:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.718\n" +
+            "  }\n" +
+            "  , { \n" +
+            "    \"@id\" : \"http://environment.data.gov.uk/flood-monitoring/data/readings/690140-level-stage-i-15_min-m/2015-12-10T03-45-00Z\" ,\n" +
+            "    \"dateTime\" : \"2015-12-10T03:45:00Z\" ,\n" +
+            "    \"measure\" : \"http://environment.data.gov.uk/flood-monitoring/id/measures/690140-level-stage-i-15_min-m\" ,\n" +
+            "    \"value\" : 0.67\n" +
+            "  }\n" +
+            "   ]\n" +
+            "}\n" +
+            "\n";
 
     private static final String STATION = "{ \n" +
             "  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\" ,\n" +

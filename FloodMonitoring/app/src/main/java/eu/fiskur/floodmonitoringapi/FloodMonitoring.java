@@ -8,11 +8,11 @@ import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import java.util.List;
 
 import eu.fiskur.floodmonitoringapi.alerts.FloodWarning;
-import eu.fiskur.floodmonitoringapi.model.Readings;
+import eu.fiskur.floodmonitoringapi.stations.Reading;
+import eu.fiskur.floodmonitoringapi.stations.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
-import eu.fiskur.floodmonitoringapi.model.Flood;
 import eu.fiskur.floodmonitoringapi.utilities.FloodUtils;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -138,19 +138,19 @@ public class FloodMonitoring {
         return rest.getStationFromUrl(url);
     }
 
-    public Observable<Readings> getReadings(String url, int count){
+    public Observable<List<Reading>> getReadings(String url, int count){
         url+="/readings";
         return rest.getReadings(url, 1, count);
     }
 
-    public Observable<Readings> getReadingsToday(String url){
+    public Observable<List<Reading>> getReadingsToday(String url){
         url+="/readings";
         return rest.getReadingsToday(url, 1, 1);
     }
 
     //end date is today
     //start date is (today - days)
-    public Observable<Readings> getReadingsDays(String url, int days){
+    public Observable<List<Reading>> getReadingsDays(String url, int days){
         String endDate = FloodUtils.getTodaysDate();
         String startDate = FloodUtils.getPreviousDate(days);
         url+="/readings";

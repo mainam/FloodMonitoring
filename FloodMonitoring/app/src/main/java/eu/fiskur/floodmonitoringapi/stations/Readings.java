@@ -1,9 +1,10 @@
-package eu.fiskur.floodmonitoringapi.model;
+package eu.fiskur.floodmonitoringapi.stations;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import eu.fiskur.floodmonitoringapi.model.Meta;
 import eu.fiskur.floodmonitoringapi.stations.Reading;
 
 public class Readings {

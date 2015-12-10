@@ -9,6 +9,7 @@ import java.util.List;
 import eu.fiskur.floodmonitoringapi.deserializers.FloodWarningDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.MeasureDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ReadingDeserializer;
+import eu.fiskur.floodmonitoringapi.deserializers.ReadingsDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.SingleFloodWarningDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.StationOverviewDeserializer;
 import eu.fiskur.floodmonitoringapi.deserializers.ThreeDayDeserializer;
@@ -52,7 +53,9 @@ public class GSONProvider {
                     .registerTypeAdapter(new TypeToken<List<FloodWarning>>() {
                     }.getType(), new FloodWarningDeserializer())
                     .registerTypeAdapter(ThreeDayForecast.class, new ThreeDayDeserializer())
-                    .registerTypeAdapter(Reading.class, new ReadingDeserializer()).create();
+                    .registerTypeAdapter(Reading.class, new ReadingDeserializer())
+                    .registerTypeAdapter(new TypeToken<List<Reading>>(){}.getType(), new ReadingsDeserializer())
+                    .create();
         }
         return restGson;
     }
