@@ -1,4 +1,4 @@
-# FloodMonitoring - in development, do not use.
+# FloodMonitoring - in development, docs may be out of date, things may break.
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
@@ -46,9 +46,9 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #Flood Warnings
 
-`getAllWarnings()` returns all current alerts (including any that have been removed in the last 24 hours).
+`getAllWarnings()` returns `List<FloodWarning>` of all current alerts (including any that have been removed in the last 24 hours).
 
-`getAreaWarnings(double latitude, double longitude, int distance)` returns any flood alerts in the area as an array of FloodWarning objects.
+`getAreaWarnings(double latitude, double longitude, int distance)` returns `List<FloodWarning>` of any flood alerts in the area as an array of FloodWarning objects.
 
 `getFloodAreaFromUrl(String url)` returns a `Flood` object containing the `FloodArea` including latitude and longitude for plotting warning locations on a map.
 
