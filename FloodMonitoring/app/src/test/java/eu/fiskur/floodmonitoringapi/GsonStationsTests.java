@@ -13,7 +13,6 @@ import eu.fiskur.floodmonitoringapi.stations.Measure;
 import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationOverview;
-import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 
 public class GsonStationsTests {
 
