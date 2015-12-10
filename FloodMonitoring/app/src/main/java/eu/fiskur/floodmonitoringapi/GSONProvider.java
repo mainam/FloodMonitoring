@@ -54,8 +54,7 @@ public class GSONProvider {
                     .registerTypeAdapter(Measure[].class, new MeasureDeserializer())
                     .registerTypeAdapter(new TypeToken<List<StationOverview>>(){}.getType(), new StationOverviewDeserializer())
                     .registerTypeAdapter(FloodWarning.class, new SingleFloodWarningDeserializer())
-                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>() {
-                    }.getType(), new FloodWarningDeserializer())
+                    .registerTypeAdapter(new TypeToken<List<FloodWarning>>() {}.getType(), new FloodWarningDeserializer())
                     .registerTypeAdapter(ThreeDayForecast.class, new ThreeDayDeserializer())
                     .registerTypeAdapter(Reading.class, new ReadingDeserializer())
                     .registerTypeAdapter(new TypeToken<List<Reading>>(){}.getType(), new ReadingsDeserializer())

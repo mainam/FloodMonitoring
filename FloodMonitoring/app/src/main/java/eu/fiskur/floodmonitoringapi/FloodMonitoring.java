@@ -33,7 +33,7 @@ public class FloodMonitoring {
     private FloodMonitoringRest rest;
 
     private FloodMonitoring(){
-        buildRest(true);
+        buildRest(false);
     }
 
     public void logOutput(boolean logOutput){
