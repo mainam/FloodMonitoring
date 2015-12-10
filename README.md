@@ -50,7 +50,7 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #3 Day Forecast
 
-'getThreeDayForecast()' returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` you can use to build the image yourself, alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
+`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` you can use to build the image yourself, alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
 
 #Flood Warnings
 
