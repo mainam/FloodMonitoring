@@ -10,6 +10,7 @@ import java.util.List;
 import eu.fiskur.floodmonitoringapi.model.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
+import eu.fiskur.floodmonitoringapi.stations.StationDetail;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.Flood;
@@ -122,19 +123,19 @@ public class FloodMonitoring {
     /*
         Stations/River Levels
      */
-    public Observable<StationsWrapper> getAllStations(){
+    public Observable<List<StationDetail>> getAllStations(){
         return rest.getStations(null, null, null, null);
     }
 
-    public Observable<StationsWrapper> getCountyStations(String county){
+    public Observable<List<StationDetail>> getCountyStations(String county){
         return rest.getStations(county, null, null, null);
     }
 
-    public Observable<StationsWrapper> getAreaStations(double latutide, double longitude, int distance){
+    public Observable<List<StationDetail>> getAreaStations(double latutide, double longitude, int distance){
         return rest.getStations(null, latutide, longitude, distance);
     }
 
-    public Observable<StationWrapper> getStation(String url){
+    public Observable<List<StationDetail>> getStation(String url){
         return rest.getStationFromUrl(url);
     }
 
