@@ -8,6 +8,7 @@ import eu.fiskur.floodmonitoringapi.model.FloodWarning;
 import eu.fiskur.floodmonitoringapi.model.Readings;
 import eu.fiskur.floodmonitoringapi.alerts.ThreeDayForecast;
 import eu.fiskur.floodmonitoringapi.stations.StationDetail;
+import eu.fiskur.floodmonitoringapi.stations.StationOverview;
 import eu.fiskur.floodmonitoringapi.stations.StationWrapper;
 import eu.fiskur.floodmonitoringapi.stations.StationsWrapper;
 import eu.fiskur.floodmonitoringapi.model.Flood;
@@ -40,7 +41,7 @@ public interface FloodMonitoringRest {
 
     //Measurement stations
     @GET("id/stations")
-    Observable<List<StationDetail>> getStations(
+    Observable<List<StationOverview>> getStations(
             @Query("county") String county,
             @Query("lat") Double lat,
             @Query("long") Double lon,

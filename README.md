@@ -27,6 +27,23 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	});
 ```
 
+#Logging
+
+You can turn on logging to see the network response:
+
+`FloodMonitoring.getInstance().logOutput(true);`
+
+Then register a log listener:
+
+```java        
+FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener() {
+    @Override
+    public void apiLog(String message) {
+        Log.d(TAG, message);
+    }
+});
+```
+
 #Flood Warnings
 
 `getAllWarnings()` returns all current alerts (including any that have been removed in the last 24 hours).
