@@ -2,7 +2,7 @@
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
-The FloodMonitoringHarness example application illustrates how to use the library with RxJava. The API is RESTful and follows [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS), this means where the Android library requires a url you can use the id of an object: `getId()`
+The Flood Monitoring API is RESTful and follows [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS), this means where the Android library requires a url you can use the id of an object: `getId()`
 
 A couple of apps using this library:  
 Flood Alerts: https://play.google.com/store/apps/details?id=eu.fiskur.floodmonitor  
@@ -50,11 +50,11 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #3 Day Forecast
 
-`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` you can use to build the image yourself, alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
+`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` containing the image bytes, alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
 
 #Flood Warnings
 
-`getAllWarnings()` returns `List<FloodWarning>` of all current alerts (including any that have been removed in the last 24 hours).
+`getAllWarnings()` returns `List<FloodWarning>` of all current alerts (including any that have been removed in the last 24 hours, use `getSeverityLevel()` to build your UI).
 
 `getAreaWarnings(double latitude, double longitude, int distance)` returns `List<FloodWarning>` of any flood alerts in the area as an array of FloodWarning objects.
 
