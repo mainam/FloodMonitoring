@@ -24,21 +24,21 @@ public class GsonStationsTests {
         assertEquals(2, stations.size());
     }
 
-        /*
-
     @Test
     public void stationsOverviewTest(){
         Gson gson = GSONProvider.getRestGson();
-        StationsWrapper stationsWrapper = gson.fromJson(STATIONS_BY_LOCATION, StationsWrapper.class);
-        StationOverview overview = stationsWrapper.getItems().get(0);
+        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>(){}.getType());
+        StationOverview overview = stations.get(0);
         assertEquals(2, overview.getMeasures().size());
     }
+
+
 
     @Test
     public void stationOverviewFieldsTest(){
         Gson gson = GSONProvider.getRestGson();
-        StationsWrapper stationsWrapper = gson.fromJson(STATIONS_BY_LOCATION, StationsWrapper.class);
-        StationOverview overview = stationsWrapper.getItems().get(0);
+        List<StationOverview> stations = gson.fromJson(STATIONS_BY_LOCATION, new TypeToken<List<StationOverview>>(){}.getType());
+        StationOverview overview = stations.get(0);
         assertEquals("http://environment.data.gov.uk/flood-monitoring/id/stations/690138", overview.getId());
         assertEquals("5116", overview.getRLOIid());
         assertEquals("Northern Manchester", overview.getCatchmentName());
@@ -84,8 +84,6 @@ public class GsonStationsTests {
         StationDetail station = stationsWrapper.getStation();
         assertEquals(3, station.getMeasures().length);
     }
-
-    */
 
     private static final String STATION = "{ \n" +
             "  \"@context\" : \"http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld\" ,\n" +
