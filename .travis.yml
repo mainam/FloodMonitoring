@@ -7,5 +7,5 @@ android:
     - extra-google-m2repository
     
 script:
-  - ./gradlew assembleDebug
+  - ./gradlew test --continue
 
