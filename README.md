@@ -30,11 +30,38 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	    }
 	});
 ```
-#TODO
+#Dependency
 
-- There's still some refactoring to do
-- More docs
-- Get working with https://jitpack.io
+Add jitpack.io to your root build.gradle, eg:
+
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+then add the dependency to your project build.gradle:
+
+```groovy
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.github.fiskurgit:FloodMonitoring:1.5'
+}
+```
+You can find the latest version in the releases tab above: https://github.com/fiskurgit/FloodMonitoring/releases
+
+More options at jitpack.io: https://jitpack.io/#fiskurgit/FloodMonitoring
+
+#Licence
+
+Full licence here: https://github.com/fiskurgit/FloodMonitoring/blob/master/LICENSE.md
+
+In short:
+
+> The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
 #Logging
 
@@ -55,7 +82,7 @@ FloodApiLogger.getInstance().setApiLogListener(new FloodApiLogger.ApiLogListener
 
 #3 Day Forecast
 
-`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` containing the image bytes, a convenience method in the utils class helps populate an ImageView: `FloodUtils.loadImage(responseBody, imageView)`. Alternatively get the image URLs for use with Picasso: `getDayImageUrl(int day)`.
+`getThreeDayForecast()` returns a general overview of the forecast for England and Wales over the next 3 days. A small image of the UK marked with forecast warnings can be fetched using `getDayImageBytes(int day)` (with 1, 2, or 3) this returns a Retrofit `ResponseBody` containing the image bytes, a convenience method in the utils class helps populate an ImageView: `FloodUtils.loadImage(responseBody, imageView)`. Alternatively get the image URLs for use with [Picasso](http://square.github.io/picasso/) or similar: `getDayImageUrl(int day)`.
 
 #Flood Warnings
 
