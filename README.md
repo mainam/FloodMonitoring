@@ -30,11 +30,28 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	    }
 	});
 ```
-#TODO
+#Download
 
-- There's still some refactoring to do
-- More docs
-- Get working with https://jitpack.io
+Add jitpack.io to your root build.gradle, eg:
+
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+then add the dependency to your project build.gradle:
+
+```groovy
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.github.fiskurgit:FloodMonitoring:1.5'
+}
+```
+You can find the latest version in the releases tab above: https://github.com/fiskurgit/FloodMonitoring/releases
 
 #Logging
 
