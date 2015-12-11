@@ -22,6 +22,7 @@ import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -58,7 +59,9 @@ public class QuickHull {
     public ArrayList<Point> quickHull(ArrayList<Point> points) {
         final ArrayList<Point> convexHull = new ArrayList<Point>();
         if (points.size() < 3) {
-            return (ArrayList<Point>) points.clone();
+            ArrayList<Point> clonedList = new ArrayList<>();
+            Collections.copy(clonedList, points);
+            return clonedList;
         }
 
         int minPoint = -1, maxPoint = -1;
