@@ -1,4 +1,5 @@
-# FloodMonitoring
+# FloodMonitoring 
+[![Build Status](https://api.travis-ci.org/fiskurgit/FloodMonitoring.svg?branch=master)](https://travis-ci.org/fiskurgit/FloodMonitoring)
 
 Android library for the gov.uk Flood Monitoring API: http://environment.data.gov.uk/flood-monitoring/doc/reference
 
