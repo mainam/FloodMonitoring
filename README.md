@@ -30,7 +30,7 @@ FloodMonitoring.getInstance().getThreeDayForecast()
 	    }
 	});
 ```
-#Download
+#Dependency
 
 Add jitpack.io to your root build.gradle, eg:
 
@@ -52,6 +52,8 @@ dependencies {
 }
 ```
 You can find the latest version in the releases tab above: https://github.com/fiskurgit/FloodMonitoring/releases
+
+More options at jitpack.io: https://jitpack.io/#fiskurgit/FloodMonitoring
 
 #Logging
 
