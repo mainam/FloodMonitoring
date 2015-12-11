@@ -125,7 +125,7 @@ public class FloodUtils {
     }
 
     //If for some reason you want to avoid GSON serialisation:
-    public JSONObject getJSONObject(ResponseBody responseBody){
+    public static JSONObject getJSONObject(ResponseBody responseBody){
         try{
             String decoded = new String(responseBody.bytes(), "UTF-8");
             return new JSONObject(decoded);
